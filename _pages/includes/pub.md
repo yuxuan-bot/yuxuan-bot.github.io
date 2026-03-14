@@ -19,6 +19,21 @@ Quantization**](https://ieeexplore.ieee.org/abstract/document/11356358) \\
 </div>
 
 
+<div class='paper-box'>
+<div class='paper-box-image'>
+<div>
+<div class="badge">BIBM 2025</div>
+<img src='images/papers/NPC.png' alt="sym" width="100%">
+</div>
+</div>
+<div class='paper-box-text' markdown="1">
+
+[**Carbon-Aware Task Scheduling in Distributed Computing Continuum: A Lyapunov-Guided Reinforcement Learning Approach**](https://link.springer.com/chapter/10.1007/978-3-032-10459-5_18) \\
+Shujia Niu, Zhenli He*, Yuanfei Xiao, **Yuxuan Nie**, Yao Chen, Bingning Liu.
+
+</div>
+</div>
+
 <!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2021</div><img src='images/fs2.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -31,7 +46,7 @@ Quantization**](https://ieeexplore.ieee.org/abstract/document/11356358) \\
 </div> -->
 
 
-- `IFIP NPC 2025` [Carbon-Aware Task Scheduling in Distributed Computing Continuum: A Lyapunov-Guided Reinforcement Learning Approach](https://link.springer.com/chapter/10.1007/978-3-032-10459-5_18), Shujia Niu, Zhenli He*, Yuanfei Xiao, Yuxuan Nie, Yao Chen, Bingning Liu.
+- `IFIP NPC 2025` [Carbon-Aware Task Scheduling in Distributed Computing Continuum: A Lyapunov-Guided Reinforcement Learning Approach](https://link.springer.com/chapter/10.1007/978-3-032-10459-5_18), Shujia Niu, Zhenli He*, Yuanfei Xiao, **Yuxuan Nie**, Yao Chen, Bingning Liu.
 
 
 <!-- - ``ICML 2019`` <span style="color:red">(Oral)</span> [Almost Unsupervised Text to Speech and Automatic Speech Recognition](https://pdfs.semanticscholar.org/9075/a3e6271e5ef4953491488d1776527e632408.pdf), **Yi Ren**, Xu Tan, Tao Qin, et al.  \| [**Project**](https://speechresearch.github.io/unsuper/) [![](https://img.shields.io/github/stars/walker-hyf/ECSS?style=social&label=Code+Stars)](https://github.com/walker-hyf/ECSS)  -->
