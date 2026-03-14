@@ -22,8 +22,8 @@ Quantization**](https://ieeexplore.ieee.org/abstract/document/11356358) \\
 <div class='paper-box'>
 <div class='paper-box-image'>
 <div>
-<div class="badge">BIBM 2025</div>
-<img src='images/papers/NPC.png' alt="sym" width="100%">
+<div class="badge">IFIP NPC 2025</div>
+<img src='images/papers/NPC.png' alt="sym" width="50%">
 </div>
 </div>
 <div class='paper-box-text' markdown="1">
