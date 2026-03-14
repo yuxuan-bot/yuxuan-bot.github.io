@@ -1,0 +1,3 @@
+I am Yuxuan Nie, currently a senior majoring in Software Engineering at Yunnan University. I will start my graduate studies at the [School of Electronic and Computer Engineering](https://ss.pku.edu.cn/), [Peking University](https://www.pku.edu.cn/) in September 2026. My research focuses on AI infrastructure, large model inference, reinforcement learning, and edge computing, covering inference acceleration, distributed training optimization, resource-efficient deployment, and the integration of reinforcement learning with edge intelligence. I am also currently working on research related to low-latency inference systems for edge devices.
+
+If you are interested in academic cooperation or exchanges in related fields, please feel free to contact me via email at any time!

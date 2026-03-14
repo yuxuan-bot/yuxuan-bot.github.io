@@ -1,0 +1,16 @@
+{
+  "name": "acad-homepage",
+  "version": "1.0.0",
+  "description": "Academic Personal Homepage",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node build.js && npx http-server ./dist -p 4000 -o",
+    "dev": "npm run build && npm run serve"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "markdown-it": "^14.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}
+

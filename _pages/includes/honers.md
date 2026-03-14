@@ -1,0 +1,18 @@
+# 🏆 Honors and Awards
+- *2025.12* PaddlePaddle Open Source Star of the Year 2025 (Awarded to only 10 recipients annually)
+- *2025.10* National Scholarship (1%)
+- *2025.10* Special Scholarship (Top 10 university-wide, one of the highest undergraduate honors)
+- *2025.10* First-Class Academic Scholarship
+- *2025.10* Hansheng Scholarship (1%)
+- *2025.10* HCSD, Huawei Cloud
+- *2025.10* Paddle/docs Committer
+- *2025.03* Paddle Contributor
+- *2025.02* Top 10 in Alibaba Tianchi Big Data Competition (1%)
+- *2024.12* First Prize (Provincial Champion) in the National College Mathematics Competition (1%)
+- *2024.10* First-Class Academic Scholarship
+- *2024.10* Yuehong Undergraduate Scholarship
+- *2024.02* Kaggle Competition Silver Medal (Top 5%) & Bronze Medal (Top 9.7%)
+- *2023.10* Provincial Government Scholarship (1%)
+- *2023.10* Provincial Three-Good Student (1%)
+- *2023.10* First-Class Academic Scholarship
+- *2023.10* Fudian Bank Scholarship
