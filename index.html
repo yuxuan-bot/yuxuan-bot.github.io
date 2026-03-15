@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuxuan Nie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#fefffe',
+                        foreground: '#0f172a',
+                        primary: '#1e293b',
+                        accent: '#d4a562',
+                        'accent-dark': '#b88a4d',
+                        muted: '#64748b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Crimson Text', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background text-foreground antialiased font-sans">
+    <!-- Top Navigation -->
+    <nav class="top-nav glass fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 lg:h-20">
+                <!-- Logo/Name -->
+                <div class="flex-shrink-0">
+                    <a href="#"
+                        class="text-xl lg:text-2xl font-serif font-semibold text-primary hover:text-accent transition-colors duration-200">
+                        Yuxuan Nie
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <ul class="nav-links flex space-x-8">
+                            <li><a href="#homepage" class="nav-item">Homepage</a></li>
+                            <li><a href="#about" class="nav-item">About Me</a></li>
+                            <li><a href="#latest-news" class="nav-item">News</a></li>
+                            <li><a href="#publications" class="nav-item">Publications</a></li>
+                            <li><a href="#honors" class="nav-item">Honors</a></li>
+                            <li><a href="#services" class="nav-item">Service</a></li>
+                            <li><a href="#educations" class="nav-item">Education</a></li>
+                            <li><a href="#contact" class="nav-item">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button (Simplified for now) -->
+                <div class="lg:hidden flex items-center">
+                    <button class="mobile-menu-btn p-2 rounded-md text-neutral-600 hover:text-primary">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (Hidden by default) -->
+            <div class="mobile-menu hidden lg:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-md border-b border-neutral-200 shadow-lg"
+                id="mobile-menu">
+                <ul class="flex flex-col py-4 px-4 space-y-4">
+                    <li><a href="#homepage"
+                            class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">Homepage</a>
+                    </li>
+                    <li><a href="#about"
+                            class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">About Me</a>
+                    </li>
+                    <li><a href="#latest-news"
+                            class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">News</a></li>
+                    <li><a href="#publications"
+                            class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">Publications</a>
+                    </li>
+                    <li><a href="#honors"
+                            class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">Honors</a>
+                    </li>
+                    <li><a href="#services"
+                            class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">Service</a>
+                    </li>
+                    <li><a href="#educations"
+                            class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">Education</a>
+                    </li>
+                    <li><a href="#contact"
+                            class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Grid -->
+    <main class="min-h-screen pt-20 lg:pt-28 pb-12">
+        <div class="w-full max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid-layout">
+
+                <!-- Left Column - Profile (Sticky) -->
+                <div class="profile-column">
+                    <div class="profile-card sticky top-24">
+                        <!-- Profile Image -->
+                        <div class="profile-image-container mb-6 mx-auto max-w-[180px]">
+                            <img src="assets/profile.png" id="profile-img" alt="Yuxuan Nie"
+                                class="w-full h-auto rounded-xl shadow-sm">
+                        </div>
+
+                        <!-- Name and Title -->
+                        <div class="text-center mb-6">
+                            <h1 class="text-3xl font-serif font-bold text-primary mb-2">Yuxuan Nie</h1>
+                            <p class="text-lg text-accent font-medium mb-1">Master Student</p>
+                            <p class="text-neutral-600 mb-2">Peking University</p>
+                        </div>
+
+                        <!-- Contact Links -->
+                        <div class="social-links flex flex-wrap justify-center gap-3 mb-6">
+                            <a href="mailto:nyxchaoji123@163.com" class="social-btn" title="Email"><i
+                                    class="fas fa-envelope"></i></a>
+                            <a href="assets/CV.pdf" target="_blank" class="social-btn" title="CV"><i
+                                    class="fas fa-file-pdf"></i></a>
+                            <!-- <a href="https://scholar.google.com"
+                                target="_blank" class="social-btn" title="Google Scholar"><i
+                                    class="fas fa-graduation-cap"></i></a> -->
+                            <a href="https://github.com/Echo-Nie" target="_blank" class="social-btn" title="GitHub"><i
+                                    class="fab fa-github"></i></a>
+                            <a href="https://blog.csdn.net/nyxdsb?type=blog" target="_blank" class="social-btn"
+                                title="Blog"><i class="fas fa-blog"></i></a>
+                        </div>
+
+                        <!-- Research Interests -->
+                        <div class="research-interests-card bg-neutral-100 rounded-xl p-5 mb-6">
+                            <h3
+                                class="font-serif font-bold text-lg text-primary mb-4 pb-2 border-b border-neutral-200 flex items-center">
+                                <i class="fas fa-lightbulb text-accent mr-2 text-base"></i> Research Interests
+                            </h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <i class="fas fa-mobile-alt text-accent/80 mr-3 w-5 text-center text-sm"></i>
+                                    <span class="text-sm font-medium">Mobile Edge Computing</span>
+                                </li>
+                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <i class="fas fa-server text-accent/80 mr-3 w-5 text-center text-sm"></i>
+                                    <span class="text-sm font-medium">AI Infra</span>
+                                </li>
+                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <i class="fas fa-brain text-accent/80 mr-3 w-5 text-center text-sm"></i>
+                                    <span class="text-sm font-medium">LLM Inference</span>
+                                </li>
+                                <li class="flex items-center text-neutral-700 hover:text-primary transition-colors">
+                                    <i class="fas fa-robot text-accent/80 mr-3 w-5 text-center text-sm"></i>
+                                    <span class="text-sm font-medium">Reinforce Learning</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Column - Content -->
+                <div class="content-column space-y-12">
+
+                    <!-- About Section -->
+                    <section id="homepage" class="scroll-mt-24">
+                        <span id="about"></span> <!-- Anchor for About link -->
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">👋 About Me</h2>
+                        </div>
+                        <div class="prose max-w-none text-neutral-600 text-justify formal-font">
+                            <p class="mb-4">
+                                I am currently a senior undergraduate student majoring in Software
+                                Engineering at the
+                                <a href="https://www.sei.ynu.edu.cn/" class="link-blue-underline">School of
+                                    Software Engineering</a> , Yunnan University,Kunming,
+                                China.
+                                In September 2026, I will join the School of Electronic and
+                                Computer Engineering</a>
+                                at <a href="https://www.pku.edu.cn/" class="link-blue-underline">Peking University</a>,
+                                Beijing, China,
+                                to pursue my graduate degree. My research interests mainly focus on
+                                <b>AI Infra</b>, <b>Mobile Edge Computing</b>, <b>LLM Inference</b>, and
+                                <b>Reinforcement Learning</b>,
+                                with the goal of designing efficient, scalable, and trustworthy intelligent systems.
+                            </p>
+
+                            <div
+                                class="highlight-box bg-accent/10 border-l-4 border-accent p-4 rounded-r-lg text-left font-sans">
+                                <p><strong><i class="fas fa-lightbulb text-accent mr-2"></i>I am actively seeking
+                                        collaborators of like-minded interests.</strong> If you are interested in my
+                                    work, please feel free to contact me via email.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Research Thrust Section -->
+                    <section id="research-thrust" class="scroll-mt-24">
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">🚀 Research Thrust</h2>
+                        </div>
+                        <div class="prose max-w-none text-neutral-600 text-justify formal-font">
+                            <blockquote
+                                class="pl-4 border-l-4 border-accent/30 italic text-neutral-600 bg-neutral-50/50 p-4 rounded-r-lg mb-6">
+                                "Imagine <b>Embodied AI</b> that perceives the world not just as a stream of data, but
+                                as a coherent reality. I envision endowing agents with human-like <b>Spatial
+                                    Intelligence</b> to construct a dynamic <b>World Model</b> (or Digital Twin),
+                                seamlessly bridging the gap between digital simulation and physical reality."
+                            </blockquote>
+
+                            <p class="mb-8">To achieve this vision, my research aims to construct a comprehensive
+                                <b>World Model</b> for <b>Spatial Intelligence</b>, serving as the cognitive core for
+                                <b>Embodied AI</b> (e.g., Autonomous Vehicles). This system not only mirrors the current
+                                physical world but also reasons about its dynamics. I approach this goal through two
+                                complementary thrusts:
+                            </p>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Thrust 1 -->
+                                <div
+                                    class="thrust-card bg-neutral-50 rounded-xl p-5 border border-neutral-100 hover:shadow-md transition-all duration-300 group flex flex-col h-full">
+                                    <h3
+                                        class="font-serif font-bold text-lg text-primary mb-4 flex items-center group-hover:text-accent transition-colors">
+                                        <i
+                                            class="fas fa-project-diagram text-accent mr-2 group-hover:scale-110 transition-transform"></i>
+                                        Collaboration for Extended 3D Understanding
+                                    </h3>
+                                    <p class="text-sm leading-relaxed text-justify text-neutral-600 flex-grow">
+                                        This thrust focuses on <b>extending the spatial breadth</b> of the World Model.
+                                        By establishing <i>Collaborative Perception</i> among agents, it overcomes
+                                        individual sensing limitations (e.g., occlusions, limited range). This
+                                        collective intelligence builds a more complete and robust <i>World Model</i>,
+                                        ensuring agents maintain accurate 3D understanding even in complex, adversarial,
+                                        or bandwidth-constrained environments.
+                                    </p>
+                                </div>
+
+                                <!-- Thrust 2 -->
+                                <div
+                                    class="thrust-card bg-neutral-50 rounded-xl p-5 border border-neutral-100 hover:shadow-md transition-all duration-300 group flex flex-col h-full">
+                                    <h3
+                                        class="font-serif font-bold text-lg text-primary mb-4 flex items-center group-hover:text-accent transition-colors">
+                                        <i
+                                            class="fas fa-brain text-accent mr-2 group-hover:scale-110 transition-transform"></i>
+                                        Generation for Predictive 3D Understanding
+                                    </h3>
+                                    <p class="text-sm leading-relaxed text-justify text-neutral-600 flex-grow">
+                                        This thrust focuses on <b>extending the temporal depth</b> of the World Model.
+                                        By leveraging <i>Generative Models</i> and <i>3D Gaussian Splatting</i>, it
+                                        empowers agents to hallucinate plausible future scenarios and recover 3D
+                                        geometry from sparse observations. This predictive capability enables the
+                                        <i>World Model</i> to simulate potential outcomes, facilitating foresightful
+                                        planning and decision-making for Embodied AI.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- News Section -->
+                    <section id="latest-news" class="scroll-mt-24">
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">🔥 News</h2>
+                        </div>
+                        <div id="news-container" class="news-list space-y-4">
+                            <!-- Dynamic Content -->
+                        </div>
+                        <div class="mt-4">
+                            <a href="#" id="view-all-news"
+                                class="text-sm font-medium text-accent hover:text-accent-dark transition-colors">
+                                <span class="expand-text">View All</span>
+                                <span class="collapse-text" style="display:none;">Hide All</span>
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Publications Section -->
+                    <section id="publications" class="scroll-mt-24">
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">📄 Publications</h2>
+                            <!-- <p class="text-sm text-neutral-500 mt-1">(* means equal contribution)</p> -->
+                        </div>
+
+                        <div class="publications-list space-y-6">
+                            <!-- Dynamic Content -->
+                        </div>
+                    </section>
+
+                    <!-- Honors Section -->
+                    <section id="honors" class="scroll-mt-24">
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">🏆 Honors & Awards</h2>
+                        </div>
+                        <div id="honors-container" class="honors-list space-y-4">
+                            <!-- Dynamic Content -->
+                        </div>
+                        <div class="mt-4">
+                            <a href="#" id="view-all-honors"
+                                class="text-sm font-medium text-accent hover:text-accent-dark transition-colors">
+                                <span class="expand-text">View All</span>
+                                <span class="collapse-text" style="display:none;">Hide All</span>
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Academic Service Section -->
+                    <section id="services" class="scroll-mt-24">
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">💼 Academic Service</h2>
+                        </div>
+                        <div class="timeline space-y-6">
+                            <!-- Conference Reviewer -->
+                            <div class="timeline-item flex gap-4">
+                                <div
+                                    class="school-logo-container w-16 h-16 flex-shrink-0 bg-white rounded-lg shadow-sm p-2 flex items-center justify-center border border-neutral-100 text-2xl text-accent">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="font-semibold text-primary">Conference Reviewer</h3>
+                                    <p class="text-sm text-accent font-medium">Program Committee Member</p>
+                                    <p class="text-sm text-neutral-600 mt-1 leading-relaxed">
+                                        ECCV (2026), CVPR (2026), ICASSP (2026), ACM MM (2025-2026), ICML (2025-2026),
+                                        ICLR (2025), IJCNN (2025), IEEE ICC (2025), IEEE GLOBECOM (2023-2025), IEEE ICCC
+                                        (2024)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Journal Reviewer -->
+                            <div class="timeline-item flex gap-4">
+                                <div
+                                    class="school-logo-container w-16 h-16 flex-shrink-0 bg-white rounded-lg shadow-sm p-2 flex items-center justify-center border border-neutral-100 text-2xl text-accent">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="font-semibold text-primary">Journal Reviewer</h3>
+                                    <p class="text-sm text-accent font-medium">Peer Review</p>
+                                    <p class="text-sm text-neutral-600 mt-1 leading-relaxed">
+                                        IEEE TMC, IEEE TITS, IEEE TCE, Pattern Recognition, Neural Networks, EAAI, IEEE
+                                        JBHI, IEEE LNET
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Session Chair -->
+                            <div class="timeline-item flex gap-4">
+                                <div
+                                    class="school-logo-container w-16 h-16 flex-shrink-0 bg-white rounded-lg shadow-sm p-2 flex items-center justify-center border border-neutral-100 text-2xl text-accent">
+                                    <i class="fas fa-chair"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="font-semibold text-primary">Session Chair</h3>
+                                    <p class="text-sm text-accent font-medium">IEEE GLOBECOM 2023</p>
+                                    <p class="text-sm text-neutral-600 mt-1">
+                                        MWN Track, Semantic Communications Session
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Teaching Assistant -->
+                            <div class="timeline-item flex gap-4">
+                                <div
+                                    class="school-logo-container w-16 h-16 flex-shrink-0 bg-white rounded-lg shadow-sm p-2 flex items-center justify-center border border-neutral-100 text-2xl text-accent">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="font-semibold text-primary">Teaching Assistant</h3>
+                                    <p class="text-sm text-accent font-medium">City University of Hong Kong</p>
+                                    <div class="text-sm text-neutral-600 mt-1 space-y-1">
+                                        <div>• CS5279 Topics in AI Security (2026 Spring)</div>
+                                        <div>• CS5222 Computer Networks & Internets (2025 Fall)</div>
+                                        <div>• CS1302 Introduction to Computer course (2024 Fall, 2025 Spring)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Education Section -->
+                    <section id="educations" class="scroll-mt-24">
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">🎓 Education</h2>
+                        </div>
+                        <div class="timeline space-y-6">
+                            <!-- Masters -->
+                            <div class="timeline-item flex gap-4">
+                                <div
+                                    class="school-logo-container w-16 h-16 flex-shrink-0 bg-white rounded-lg shadow-sm p-2 flex items-center justify-center border border-neutral-100">
+                                    <img src="assets/school/pku.png" alt="PKU" class="max-w-full max-h-full">
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="font-semibold text-primary">MEng @ Peking University</h3>
+                                    <p class="text-sm text-accent font-medium">Sep. 2026 - Apr. 2029</p>
+                                    <p class="text-sm text-neutral-600 mt-1">School of Electronic and Computer
+                                        Engineering</p>
+                                </div>
+                            </div>
+
+                            <!-- Bachelors -->
+                            <div class="timeline-item flex gap-4">
+                                <div
+                                    class="school-logo-container w-16 h-16 flex-shrink-0 bg-white rounded-lg shadow-sm p-2 flex items-center justify-center border border-neutral-100">
+                                    <img src="assets/school/ynu.png" alt="YNU" class="max-w-full max-h-full">
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="font-semibold text-primary">BEng @ Yunnan University</h3>
+                                    <p class="text-sm text-accent font-medium">Sep. 2022 - Jul. 2026</p>
+                                    <p class="text-sm text-neutral-600 mt-1">School of Software Engineering</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contact Section -->
+                    <section id="contact" class="scroll-mt-24">
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">📍 Contact</h2>
+                        </div>
+                        <div class="contact-card bg-white rounded-xl shadow-sm border border-neutral-200 p-5">
+                            <div class="mb-4">
+                                <h3 class="font-semibold text-primary mb-2">Office Address</h3>
+                                <p class="text-neutral-600 flex items-start gap-2">
+                                    <i class="fas fa-map-marker-alt mt-1 text-accent"></i>
+                                    <span>83 Tat Chee Avenue Kowloon, Hong Kong</span>
+                                </p>
+                            </div>
+                            <div
+                                class="map-container rounded-lg overflow-hidden shadow-sm border border-neutral-100 mb-4">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.4156431518!2d114.16990907694372!3d22.3379294415273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34040736e9ad7dd3%3A0x1706ff4e8aa79fd1!2z5Lmd6b6N5aGY6YGU5LmL6LevODPomZ_lrbjooZPmqJMgKOS4iSk!5e0!3m2!1szh-CN!2shk!4v1747664344094!5m2!1szh-CN!2shk"
+                                    width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                            <div class="visitor-stats text-center">
+                                <h3 class="font-semibold text-primary mb-2">Visitor Statistics</h3>
+                                <div
+                                    style="display: flex; justify-content: center; width: 100%; max-width: 300px; margin: 0 auto; min-height: 200px;">
+                                    <script type="text/javascript" id="clstr_globe"
+                                        src="https://clustrmaps.com/globe.js?d=DGYryRUj2d1F6bWJ5iDqqI6z8tPVyqLu9TOe9LQmSt4"></script>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-neutral-200 py-8 mt-12 bg-neutral-50">
+        <div class="max-w-[90rem] mx-auto px-4 text-center text-neutral-500 text-sm">
+            <p>&copy; <span id="current-year"></span> Yuxuan Nie. All rights reserved.</p>
+            <p class="mt-2">Template adapted from <a href="https://github.com/yihangtao/AcaNova-X" target="_blank"
+                    class="text-accent hover:underline font-medium">AcaNova-X</a></p>
+        </div>
+    </footer>
+
+    <script src="view-all.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
