@@ -369,7 +369,7 @@ function getVenueShortName(venueStr, year) {
     let suffix = '';
 
     // Check if it is a conference that needs year suffix
-    const conferences = ['NeurIPS', 'CVPR', 'ICCV', 'ECCV', 'ICRA', 'AAAI', 'GLOBECOM', 'INFOCOM', 'MOBICOM'];
+    const conferences = ['NeurIPS', 'CVPR', 'ICCV', 'ECCV', 'ICRA', 'AAAI', 'BIBM', 'IFIP NPC', 'INFOCOM', 'MOBICOM'];
     for (const conf of conferences) {
         if (s.includes(conf)) {
             // Get last two digits of year
@@ -427,9 +427,10 @@ function getVenueFullName(venueStr, year) {
     if (s.includes('ECCV')) return `European Conference on Computer Vision (ECCV${yearSuffix})`;
     if (s.includes('ICRA')) return `IEEE International Conference on Robotics and Automation (ICRA${yearSuffix})`;
     if (s.includes('AAAI')) return `AAAI Conference on Artificial Intelligence (AAAI${yearSuffix})`;
-    if (s.includes('GLOBECOM')) return `IEEE Global Communications Conference (GLOBECOM${yearSuffix})`;
     if (s.includes('INFOCOM')) return `IEEE International Conference on Computer Communications (INFOCOM${yearSuffix})`;
     if (s.includes('MOBICOM')) return `Annual International Conference on Mobile Computing and Networking (MobiCom${yearSuffix})`;
+    if (s.includes('BIBM')) return `IEEE International Conference on Bioinformatics and Biomedicine (BIBM${yearSuffix})`;
+    if (s.includes('IFIP NPC')) return `IFIP International Conference on Network and Parallel Computing (IFIP NPC${yearSuffix})`;
 
     if (s.toLowerCase().includes('arxiv')) return 'arXiv preprint';
 
@@ -449,12 +450,12 @@ function getCCFRank(fullName, originalVenue) {
     }
 
     // CCF-B
-    if (v.includes('icra')) {
+    if (v.includes('bibm')) {
         return 'B';
     }
 
     // CCF-C
-    if (v.includes('globecom')) {
+    if (v.includes('ifip npc')) {
         return 'C';
     }
 
