@@ -23,7 +23,7 @@
 
 2. **`venue-logo.png`** 或 **`venue-logo.jpg`** 或 **`venue-logo.svg`**
    - 会议/期刊的官方logo
-   - 例如：ArXiv logo, NeurIPS logo, ICML logo等
+   - 例如：arXiv logo, NeurIPS logo, ICML logo等
    - 建议尺寸：高度80-120px
    - 将显示在右上角
 
@@ -33,7 +33,7 @@
 assets/publications/
 ├── paper-2025-shared-spatial-memory/
 │   ├── thumbnail.png          # 论文架构图
-│   └── venue-logo.png         # ArXiv logo
+│   └── venue-logo.png         # arXiv logo
 ├── paper-2025-neptune-x/
 │   ├── thumbnail.jpg
 │   └── venue-logo.png         # NeurIPS logo
@@ -51,7 +51,7 @@ assets/publications/
 {
   "title": "Your Paper Title",
   "authors": "...",
-  "venue": "ArXiv 2025",
+  "venue": "arXiv 2025",
   "thumbnail": "assets/publications/paper-2025-short-name/thumbnail.png",
   "venueLogo": "assets/publications/paper-2025-short-name/venue-logo.png",
   "type": "preprint",

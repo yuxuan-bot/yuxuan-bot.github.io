@@ -384,7 +384,7 @@ function getVenueShortName(venueStr, year) {
     }
 
     // Special cases
-    if (s.toLowerCase().includes('arxiv')) return 'ArXiv' + revisionSuffix; // No year
+    if (s.toLowerCase().includes('arxiv')) return 'arXiv' + revisionSuffix; // No year
 
     // Journals or specific conferences
     if (s.includes('TDSC')) return 'IEEE TDSC' + revisionSuffix;

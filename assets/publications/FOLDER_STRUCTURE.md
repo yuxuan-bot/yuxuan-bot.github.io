@@ -19,15 +19,15 @@
 
 3. **`2025-dynamic-uncertainty-multimodal/`**
    - 📄 `thumbnail.png`
-   - 🏢 `venue-logo.png` - ArXiv logo
+   - 🏢 `venue-logo.png` - arXiv logo
 
 4. **`2025-cp-uniguard/`**
    - 📄 `thumbnail.png`
-   - 🏢 `venue-logo.png` - ArXiv logo
+   - 🏢 `venue-logo.png` - arXiv logo
 
 5. **`2025-llm-task-adaptation/`**
    - 📄 `thumbnail.png`
-   - 🏢 `venue-logo.png` - ArXiv logo
+   - 🏢 `venue-logo.png` - arXiv logo
 
 6. **`2025-task-aware-peft/`**
    - 📄 `thumbnail.png`
@@ -35,15 +35,15 @@
 
 7. **`2025-cp-guard-plus/`**
    - 📄 `thumbnail.png`
-   - 🏢 `venue-logo.png` - ArXiv logo
+   - 🏢 `venue-logo.png` - arXiv logo
 
 8. **`2025-gcp/`**
    - 📄 `thumbnail.png`
-   - 🏢 `venue-logo.png` - ArXiv logo
+   - 🏢 `venue-logo.png` - arXiv logo
 
 9. **`2025-adaptive-attack/`**
    - 📄 `thumbnail.png`
-   - 🏢 `venue-logo.png` - ArXiv logo
+   - 🏢 `venue-logo.png` - arXiv logo
 
 10. **`2025-directed-cp/`**
     - 📄 `thumbnail.png`
@@ -107,7 +107,7 @@
 - ✅ **IEEE LNET** - IEEE Networking Letters
 
 ### 预印本Logo
-- ✅ **ArXiv** - arXiv.org logo
+- ✅ **arXiv** - arXiv.org logo
 
 ---
 
@@ -155,7 +155,7 @@ foreach ($folder in $folders) {
 - **NeurIPS**: https://neurips.cc/
 - **IEEE**: https://www.ieee.org/about/help/logos-pubs.html
 - **AAAI**: https://www.aaai.org/
-- **ArXiv**: https://arxiv.org/ (可以截图logo部分)
+- **arXiv**: https://arxiv.org/ (可以截图logo部分)
 
 ---
 
@@ -182,14 +182,14 @@ assets/publications/
 建议先处理以下论文（首页会显示的前10篇）：
 1. ⭐ Neptune-X (NeurIPS'25 Spotlight)
 2. ⭐ Distribution-Aligned Decoding (NeurIPS'25)
-3. ⭐ Dynamic Uncertainty-aware (ArXiv)
-4. ⭐ CP-uniGuard (ArXiv)
-5. ⭐ LLM Task Adaptation (ArXiv)
+3. ⭐ Dynamic Uncertainty-aware (arXiv)
+4. ⭐ CP-uniGuard (arXiv)
+5. ⭐ LLM Task Adaptation (arXiv)
 6. ⭐ Task-Aware PEFT (GLOBECOM'25)
 7. ⭐ R-ACP (IEEE JSAC)
-8. ⭐ CP-Guard+ (ArXiv)
-9. ⭐ GCP (ArXiv)
-10. ⭐ Adaptive Attack (ArXiv)
+8. ⭐ CP-Guard+ (arXiv)
+9. ⭐ GCP (arXiv)
+10. ⭐ Adaptive Attack (arXiv)
 
 剩余论文可以稍后补充。
 
