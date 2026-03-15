@@ -564,10 +564,12 @@ function renderHonorsItems(honorsData, containerId) {
         titleElement.textContent = honorItem.title;
         contentElement.appendChild(titleElement);
 
-        // Create the description element
-        const descElement = document.createElement('p');
-        descElement.innerHTML = honorItem.description;
-        contentElement.appendChild(descElement);
+        // Create the description element if it exists
+        if (honorItem.description) {
+            const descElement = document.createElement('p');
+            descElement.innerHTML = honorItem.description;
+            contentElement.appendChild(descElement);
+        }
 
         // Add year and content to the honor item
         honorElement.appendChild(yearElement);
