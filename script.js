@@ -97,15 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (latestNewsSection) {
                 // On homepage - show limited news (first 8 items)
                 renderNewsItems(data.slice(0, 8), 'news-container');
-
-                // Initialize View All toggle
-                initViewAllToggle({
-                    buttonId: 'view-all-news',
-                    containerId: 'news-container',
-                    data: data,
-                    renderFunction: renderNewsItems,
-                    defaultLimit: 8
-                });
             }
 
             // Check if we're on the all-news page
@@ -133,15 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (honorsSection) {
                 // On homepage - show limited honors (first 8 items)
                 renderHonorsItems(data.slice(0, 8), 'honors-container');
-
-                // Initialize View All toggle
-                initViewAllToggle({
-                    buttonId: 'view-all-honors',
-                    containerId: 'honors-container',
-                    data: data,
-                    renderFunction: renderHonorsItems,
-                    defaultLimit: 8
-                });
             }
 
             // Check if we're on the all-honors page
@@ -192,38 +174,39 @@ function loadPublications() {
                 return yearB - yearA;
             });
 
-            // Group by publication status
-            const pubsByStatus = {
-                'Published': [],
-                'Preprint': []
-            };
-
+            // Group by year
+            const pubsByYear = {};
             pubsToShow.forEach(pub => {
-                if (pub.type === 'preprint') {
-                    pubsByStatus['Preprint'].push(pub);
-                } else {
-                    pubsByStatus['Published'].push(pub);
+                const year = pub.year || 'Preprint';
+                if (!pubsByYear[year]) {
+                    pubsByYear[year] = [];
                 }
+                pubsByYear[year].push(pub);
             });
 
-            // Render groups (Published first, then Preprint)
-            ['Published', 'Preprint'].forEach(status => {
-                if (pubsByStatus[status].length === 0) return;
+            // Get sorted years
+            const sortedYears = Object.keys(pubsByYear).sort((a, b) => {
+                if (a === 'Preprint') return -1;
+                if (b === 'Preprint') return 1;
+                return b - a;
+            });
 
+            // Render groups
+            sortedYears.forEach(year => {
                 const yearGroup = document.createElement('div');
                 yearGroup.className = 'pub-year-group';
 
-                // Status Header
+                // Year Header
                 const yearHeader = document.createElement('h3');
                 yearHeader.className = 'pub-year-header';
-                yearHeader.textContent = `-${status}-`;
+                yearHeader.textContent = `-${year}-`;
                 yearGroup.appendChild(yearHeader);
 
                 // List
                 const ul = document.createElement('ul');
                 ul.className = 'pub-list-ul';
 
-                pubsByStatus[status].forEach(pub => {
+                pubsByYear[year].forEach(pub => {
                     const li = document.createElement('li');
                     li.className = 'pub-list-item';
 
@@ -242,7 +225,7 @@ function loadPublications() {
                     venueTagSpan.className = 'pub-venue-tag';
                     if (venueShort.toLowerCase().includes('arxiv') ||
                         venueShort.toLowerCase().includes('preprint') ||
-                        pub.type === 'preprint') {
+                        year === 'Preprint') {
                         venueTagSpan.classList.add('tag-arxiv');
                     } else {
                         venueTagSpan.classList.add('tag-conference');
@@ -393,7 +376,7 @@ function getVenueShortName(venueStr, year) {
     let suffix = '';
 
     // Check if it is a conference that needs year suffix
-    const conferences = ['NeurIPS', 'CVPR', 'ICCV', 'ECCV', 'BIBM', 'AAAI', 'INFOCOM', 'MOBICOM', 'IFIP NPC'];
+    const conferences = ['NeurIPS', 'CVPR', 'ICCV', 'ECCV', 'ICRA', 'AAAI', 'GLOBECOM', 'INFOCOM', 'MOBICOM'];
     for (const conf of conferences) {
         if (s.includes(conf)) {
             // Get last two digits of year
@@ -449,11 +432,12 @@ function getVenueFullName(venueStr, year) {
     if (s.includes('CVPR')) return `IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR${yearSuffix})`;
     if (s.includes('ICCV')) return `IEEE/CVF International Conference on Computer Vision (ICCV${yearSuffix})`;
     if (s.includes('ECCV')) return `European Conference on Computer Vision (ECCV${yearSuffix})`;
+    if (s.includes('ICRA')) return `IEEE International Conference on Robotics and Automation (ICRA${yearSuffix})`;
     if (s.includes('AAAI')) return `AAAI Conference on Artificial Intelligence (AAAI${yearSuffix})`;
+    if (s.includes('GLOBECOM')) return `IEEE Global Communications Conference (GLOBECOM${yearSuffix})`;
     if (s.includes('INFOCOM')) return `IEEE International Conference on Computer Communications (INFOCOM${yearSuffix})`;
     if (s.includes('MOBICOM')) return `Annual International Conference on Mobile Computing and Networking (MobiCom${yearSuffix})`;
-    if (s.includes('BIBM')) return `IEEE International Conference on Bioinformatics and Biomedicine (BIBM${yearSuffix})`;
-    if (s.includes('IFIP NPC')) return `IFIP International Conference on Network and Parallel Computing (IFIP NPC${yearSuffix})`;
+
     if (s.toLowerCase().includes('arxiv')) return 'arXiv preprint';
 
     return s;
@@ -472,12 +456,12 @@ function getCCFRank(fullName, originalVenue) {
     }
 
     // CCF-B
-    if (v.includes('bibm')) {
+    if (v.includes('icra')) {
         return 'B';
     }
 
     // CCF-C
-    if (v.includes('ifip npc')) {
+    if (v.includes('globecom')) {
         return 'C';
     }
 
@@ -511,7 +495,7 @@ function renderNewsItems(newsData, containerId) {
 
         // Create emoji and content text
         const textSpan = document.createElement('span');
-        textSpan.innerHTML = newsItem.content;
+        textSpan.innerHTML = '🎉 ' + newsItem.content;
         contentElement.appendChild(textSpan);
 
         // Add links if provided in the links array format
