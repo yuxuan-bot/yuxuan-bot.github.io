@@ -92,17 +92,14 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch(newsJsonPath)
         .then(response => response.json())
         .then(data => {
-            // Check if we're on the homepage
             const latestNewsSection = document.getElementById('latest-news');
             if (latestNewsSection) {
-                // On homepage - show limited news (first 8 items)
-                renderNewsItems(data.slice(0, 8), 'news-container');
+                renderNewsItems(data, 'news-container');
+                initNewsAutoScroll();
             }
 
-            // Check if we're on the all-news page
             const allNewsSection = document.getElementById('all-news');
             if (allNewsSection) {
-                // On all-news page - show all news items
                 renderNewsItems(data, 'all-news-container');
             }
         })
@@ -110,32 +107,21 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error loading news data:', error);
         });
 
-    // Load honors data
-    let honorsJsonPath = 'data/honors.json';
-    if (window.location.pathname.includes('/pages/')) {
-        honorsJsonPath = '../data/honors.json';
+    // Load honors data - use view-all.js for homepage
+    const honorsSection = document.getElementById('honors');
+    if (honorsSection) {
+        initViewAll('view-all-honors', 'honors-container', 'data/honors.json', renderHonorsItems, 8);
     }
 
-    fetch(honorsJsonPath)
-        .then(response => response.json())
-        .then(data => {
-            // Check if we're on the homepage
-            const honorsSection = document.getElementById('honors');
-            if (honorsSection) {
-                // On homepage - show limited honors (first 8 items)
-                renderHonorsItems(data.slice(0, 8), 'honors-container');
-            }
-
-            // Check if we're on the all-honors page
-            const allHonorsSection = document.getElementById('all-honors');
-            if (allHonorsSection) {
-                // On all-honors page - show all honors items
-                renderHonorsItems(data, 'all-honors-container');
-            }
-        })
-        .catch(error => {
-            console.error('Error loading honors data:', error);
-        });
+    // Load all honors for dedicated page
+    const allHonorsSection = document.getElementById('all-honors');
+    if (allHonorsSection) {
+        let honorsJsonPath = '../data/honors.json';
+        fetch(honorsJsonPath)
+            .then(response => response.json())
+            .then(data => renderHonorsItems(data, 'all-honors-container'))
+            .catch(error => console.error('Error loading honors data:', error));
+    }
 });
 
 // Function to load publications from JSON
@@ -164,35 +150,42 @@ function loadPublications() {
         .then(publications => {
             console.log('Loaded publications:', publications.length);
 
-            // Filter publications to show on homepage based on showOnHomepage flag
-            let pubsToShow = publications;
+            // Group by status: Preprint or Published
+            const pubsByStatus = {
+                'Preprint': [],
+                'Published': []
+            };
 
-            // Sort by year descending (Preprints/Missing year at top)
-            pubsToShow.sort((a, b) => {
+            publications.forEach(pub => {
+                const venue = (pub.venue || '').toLowerCase();
+                const isPreprint = pub.type === 'preprint' ||
+                    venue.includes('arxiv') ||
+                    venue.includes('under review') ||
+                    venue.includes('revision');
+
+                if (isPreprint) {
+                    pubsByStatus['Preprint'].push(pub);
+                } else {
+                    pubsByStatus['Published'].push(pub);
+                }
+            });
+
+            // Sort each group by year descending
+            pubsByStatus['Preprint'].sort((a, b) => {
+                const yearA = a.year ? parseInt(a.year) : 9999;
+                const yearB = b.year ? parseInt(b.year) : 9999;
+                return yearB - yearA;
+            });
+            pubsByStatus['Published'].sort((a, b) => {
                 const yearA = a.year ? parseInt(a.year) : 9999;
                 const yearB = b.year ? parseInt(b.year) : 9999;
                 return yearB - yearA;
             });
 
-            // Group by year
-            const pubsByYear = {};
-            pubsToShow.forEach(pub => {
-                const year = pub.year || 'Preprint';
-                if (!pubsByYear[year]) {
-                    pubsByYear[year] = [];
-                }
-                pubsByYear[year].push(pub);
-            });
-
-            // Get sorted years
-            const sortedYears = Object.keys(pubsByYear).sort((a, b) => {
-                if (a === 'Preprint') return -1;
-                if (b === 'Preprint') return 1;
-                return b - a;
-            });
-
-            // Render groups
-            sortedYears.forEach(year => {
+            // Render groups (Preprint first, then Published)
+            ['Preprint', 'Published'].forEach(status => {
+                if (pubsByStatus[status].length === 0) return;
+                const year = status;
                 const yearGroup = document.createElement('div');
                 yearGroup.className = 'pub-year-group';
 
@@ -206,7 +199,7 @@ function loadPublications() {
                 const ul = document.createElement('ul');
                 ul.className = 'pub-list-ul';
 
-                pubsByYear[year].forEach(pub => {
+                pubsByStatus[status].forEach(pub => {
                     const li = document.createElement('li');
                     li.className = 'pub-list-item';
 
@@ -652,4 +645,40 @@ function setupLinkObserver() {
 
     // Start observing the target node for configured mutations
     observer.observe(targetNode, config);
-} 
+}
+
+// Auto-scroll function for News section
+function initNewsAutoScroll() {
+    const wrapper = document.querySelector('.news-scroll-wrapper');
+    const container = document.getElementById('news-container');
+
+    if (!wrapper || !container) return;
+
+    const scrollSpeed = 15; // pixels per second
+    let scrollPosition = 0;
+    let isPaused = false;
+    let animationId = null;
+
+    // Clone content for seamless loop
+    const clone = container.cloneNode(true);
+    clone.id = 'news-container-clone';
+    wrapper.appendChild(clone);
+
+    function scroll() {
+        if (!isPaused) {
+            scrollPosition += scrollSpeed / 60;
+
+            if (scrollPosition >= container.offsetHeight) {
+                scrollPosition = 0;
+            }
+
+            wrapper.scrollTop = scrollPosition;
+        }
+        animationId = requestAnimationFrame(scroll);
+    }
+
+    wrapper.addEventListener('mouseenter', () => { isPaused = true; });
+    wrapper.addEventListener('mouseleave', () => { isPaused = false; });
+
+    animationId = requestAnimationFrame(scroll);
+}

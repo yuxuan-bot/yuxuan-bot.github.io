@@ -51,8 +51,8 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:block">
                     <div class="ml-10 flex items-center space-x-8">
-                        <ul class="nav-links flex space-x-8">
-                            <li><a href="#homepage" class="nav-item">Homepage</a></li>
+                        <ul class="nav-links flex space-x-12">
+                            <!-- <li><a href="#homepage" class="nav-item">Homepage</a></li> -->
                             <li><a href="#about" class="nav-item">About Me</a></li>
                             <li><a href="#latest-news" class="nav-item">News</a></li>
                             <li><a href="#publications" class="nav-item">Publications</a></li>
@@ -76,9 +76,9 @@
             <div class="mobile-menu hidden lg:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-md border-b border-neutral-200 shadow-lg"
                 id="mobile-menu">
                 <ul class="flex flex-col py-4 px-4 space-y-4">
-                    <li><a href="#homepage"
+                    <!-- <li><a href="#homepage"
                             class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">Homepage</a>
-                    </li>
+                    </li> -->
                     <li><a href="#about"
                             class="mobile-nav-item block text-neutral-600 hover:text-primary font-medium">About Me</a>
                     </li>
@@ -111,7 +111,7 @@
 
                 <!-- Left Column - Profile (Sticky) -->
                 <div class="profile-column">
-                    <div class="profile-card sticky top-24">
+                    <div class="profile-card">
                         <!-- Profile Image -->
                         <div class="profile-image-container mb-6 mx-auto max-w-[180px]">
                             <img src="assets/profile.png" id="profile-img" alt="Yuxuan Nie"
@@ -129,11 +129,14 @@
                         <div class="social-links flex flex-wrap justify-center gap-3 mb-6">
                             <a href="mailto:nyxchaoji123@163.com" class="social-btn" title="Email"><i
                                     class="fas fa-envelope"></i></a>
-                            <a href="assets/CV.pdf" target="_blank" class="social-btn" title="CV"><i
-                                    class="fas fa-file-pdf"></i></a>
+                            <!-- <a href="assets/CV.pdf" target="_blank" class="social-btn" title="CV"><i
+                                    class="fas fa-file-pdf"></i></a> -->
                             <!-- <a href="https://scholar.google.com"
                                 target="_blank" class="social-btn" title="Google Scholar"><i
                                     class="fas fa-graduation-cap"></i></a> -->
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/?term=yuxuan+nie" target="_blank"
+                                class="social-btn" title="PubMed"><i class="fab fa-leanpub"></i>
+                            </a>
                             <a href="https://github.com/Echo-Nie" target="_blank" class="social-btn" title="GitHub"><i
                                     class="fab fa-github"></i></a>
                             <a href="https://blog.csdn.net/nyxdsb?type=blog" target="_blank" class="social-btn"
@@ -181,9 +184,8 @@
                         <div class="prose max-w-none text-neutral-600 text-justify formal-font">
                             <p class="mb-4">
                                 I am currently a senior undergraduate student majoring in Software
-                                Engineering at the
-                                <a href="https://www.sei.ynu.edu.cn/" class="link-blue-underline">School of
-                                    Software Engineering</a> , Yunnan University,Kunming,
+                                Engineering at the School ofSoftware Engineering , <a href="https://www.sei.ynu.edu.cn/"
+                                    class="link-blue-underline">Yunnan University</a>, Kunming,
                                 China.
                                 In September 2026, I will join the School of Electronic and
                                 Computer Engineering</a>
@@ -204,84 +206,15 @@
                         </div>
                     </section>
 
-                    <!-- Research Thrust Section -->
-                    <section id="research-thrust" class="scroll-mt-24">
-                        <div class="section-header mb-6">
-                            <h2 class="text-3xl font-serif font-bold text-primary">🚀 Research Thrust</h2>
-                        </div>
-                        <div class="prose max-w-none text-neutral-600 text-justify formal-font">
-                            <blockquote
-                                class="pl-4 border-l-4 border-accent/30 italic text-neutral-600 bg-neutral-50/50 p-4 rounded-r-lg mb-6">
-                                "Imagine <b>Embodied AI</b> that perceives the world not just as a stream of data, but
-                                as a coherent reality. I envision endowing agents with human-like <b>Spatial
-                                    Intelligence</b> to construct a dynamic <b>World Model</b> (or Digital Twin),
-                                seamlessly bridging the gap between digital simulation and physical reality."
-                            </blockquote>
-
-                            <p class="mb-8">To achieve this vision, my research aims to construct a comprehensive
-                                <b>World Model</b> for <b>Spatial Intelligence</b>, serving as the cognitive core for
-                                <b>Embodied AI</b> (e.g., Autonomous Vehicles). This system not only mirrors the current
-                                physical world but also reasons about its dynamics. I approach this goal through two
-                                complementary thrusts:
-                            </p>
-
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <!-- Thrust 1 -->
-                                <div
-                                    class="thrust-card bg-neutral-50 rounded-xl p-5 border border-neutral-100 hover:shadow-md transition-all duration-300 group flex flex-col h-full">
-                                    <h3
-                                        class="font-serif font-bold text-lg text-primary mb-4 flex items-center group-hover:text-accent transition-colors">
-                                        <i
-                                            class="fas fa-project-diagram text-accent mr-2 group-hover:scale-110 transition-transform"></i>
-                                        Collaboration for Extended 3D Understanding
-                                    </h3>
-                                    <p class="text-sm leading-relaxed text-justify text-neutral-600 flex-grow">
-                                        This thrust focuses on <b>extending the spatial breadth</b> of the World Model.
-                                        By establishing <i>Collaborative Perception</i> among agents, it overcomes
-                                        individual sensing limitations (e.g., occlusions, limited range). This
-                                        collective intelligence builds a more complete and robust <i>World Model</i>,
-                                        ensuring agents maintain accurate 3D understanding even in complex, adversarial,
-                                        or bandwidth-constrained environments.
-                                    </p>
-                                </div>
-
-                                <!-- Thrust 2 -->
-                                <div
-                                    class="thrust-card bg-neutral-50 rounded-xl p-5 border border-neutral-100 hover:shadow-md transition-all duration-300 group flex flex-col h-full">
-                                    <h3
-                                        class="font-serif font-bold text-lg text-primary mb-4 flex items-center group-hover:text-accent transition-colors">
-                                        <i
-                                            class="fas fa-brain text-accent mr-2 group-hover:scale-110 transition-transform"></i>
-                                        Generation for Predictive 3D Understanding
-                                    </h3>
-                                    <p class="text-sm leading-relaxed text-justify text-neutral-600 flex-grow">
-                                        This thrust focuses on <b>extending the temporal depth</b> of the World Model.
-                                        By leveraging <i>Generative Models</i> and <i>3D Gaussian Splatting</i>, it
-                                        empowers agents to hallucinate plausible future scenarios and recover 3D
-                                        geometry from sparse observations. This predictive capability enables the
-                                        <i>World Model</i> to simulate potential outcomes, facilitating foresightful
-                                        planning and decision-making for Embodied AI.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
                     <!-- News Section -->
                     <section id="latest-news" class="scroll-mt-24">
                         <div class="section-header mb-6">
                             <h2 class="text-3xl font-serif font-bold text-primary">🔥 News</h2>
                         </div>
-                        <div id="news-container" class="news-list space-y-4">
-                            <!-- Dynamic Content -->
-                        </div>
-                        <div class="mt-4">
-                            <a href="#" id="view-all-news"
-                                class="text-sm font-medium text-accent hover:text-accent-dark transition-colors">
-                                <span class="expand-text">View All</span>
-                                <span class="collapse-text" style="display:none;">Hide All</span>
-                                <i class="fas fa-arrow-right ml-1"></i>
-                            </a>
+                        <div class="news-scroll-wrapper">
+                            <div id="news-container" class="news-list">
+                                <!-- Dynamic Content -->
+                            </div>
                         </div>
                     </section>
 
@@ -398,7 +331,7 @@
                                     <h3 class="font-semibold text-primary">Intern @ Baidu</h3>
                                     <p class="text-sm text-accent font-medium">Sep. 2025 - Mar. 2026</p>
                                     <p class="text-sm text-neutral-600 mt-1">
-                                        Large Model Infrastructure Department (📍 Base Beijing)
+                                        Large Model Infrastructure Department <em>(🎐 Base Beijing)</em>
                                     </p>
                                 </div>
                             </div>
@@ -426,7 +359,7 @@
                                     <p class="text-sm text-accent font-medium">Jul. 2024 - Aug. 2024</p>
                                     <p class="text-sm text-neutral-600 mt-1">
                                         Artificial Intelligence Generated Content, Paper Reproduction &
-                                        Implementation (📍 Base Shanghai)
+                                        Implementation <em>(🎐 Base Shanghai)</em>
                                     </p>
                                 </div>
                             </div>
@@ -471,8 +404,10 @@
     <footer class="border-t border-neutral-200 py-8 mt-12 bg-neutral-50">
         <div class="max-w-[90rem] mx-auto px-4 text-center text-neutral-500 text-sm">
             <p>&copy; <span id="current-year"></span> Yuxuan Nie. All rights reserved.</p>
-            <p class="mt-2">Template adapted from <a href="https://github.com/yihangtao/AcaNova-X" target="_blank"
-                    class="text-accent hover:underline font-medium">AcaNova-X</a></p>
+            <p class="mt-2">Template based on <a href="https://github.com/yihangtao/AcaNova-X" target="_blank"
+                    class="text-accent hover:underline font-medium">AcaNova-X</a> (modified & extended),
+                hosted at <a href="https://github.com/yuxuan-bot/yuxuan-bot.github.io" target="_blank"
+                    class="text-accent hover:underline font-medium">scholar-template</a></p>
         </div>
     </footer>
 

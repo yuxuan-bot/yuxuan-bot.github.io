@@ -107,6 +107,12 @@ section {
         gap: 4rem;
         align-items: start;
     }
+
+    .profile-column {
+        position: sticky;
+        top: 6rem;
+        align-self: start;
+    }
 }
 
 /* Cards */
@@ -359,31 +365,46 @@ details summary {
     display: none;
 }
 
-/* News Item Dashed Line */
+/* News Section - Auto Scroll */
+.news-scroll-wrapper {
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    padding: 1rem;
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .news-item {
     display: grid;
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 90px 1fr;
     gap: 1.5rem;
     align-items: baseline;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .news-date {
-    font-family: 'Kalam', cursive;
-    /* Cleaner, wider handwriting font */
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 0.875rem;
     color: #64748b;
     white-space: nowrap;
+    letter-spacing: 0.02em;
 }
 
 .news-content {
-    font-family: 'Kalam', cursive;
-    /* Cleaner, wider handwriting font */
+    font-family: 'Georgia', 'Times New Roman', serif;
     font-size: 0.95rem;
-    color: #334155;
-    line-height: 1.5;
+    color: #1e293b;
+    line-height: 1.65;
 }
 
 .news-item:last-child {
@@ -439,7 +460,7 @@ details summary {
 .honor-year {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.98rem;
     color: #d4a562;
     /* accent */
     text-align: right;
