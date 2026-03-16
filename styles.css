@@ -550,7 +550,7 @@ details summary {
 
 a.link-blue-underline {
     color: #0066cc !important;
-    text-decoration: underline !important;
+    text-decoration: none !important;
 }
 
 a.link-blue-underline:hover {
