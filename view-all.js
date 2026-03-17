@@ -21,7 +21,7 @@ function initViewAll(btnId, containerId, dataPath, renderFunc, limit = 8) {
         .catch(error => console.error('Error loading data:', error));
 
     // Toggle expand/collapse
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', function (e) {
         e.preventDefault();
         isExpanded = !isExpanded;
 

@@ -1,5 +1,20 @@
 [
   {
+    "date": "2026.03",
+    "title": "EMNLP 2026",
+    "content": "One paper was submitted to <strong>EMNLP 2026</strong>!"
+  },
+  {
+    "date": "2026.03",
+    "title": "EMSOFT 2026",
+    "content": "One paper was submitted to <strong>EMSOFT 2026</strong>!"
+  },
+  {
+    "date": "2026.03",
+    "title": "KBS 2026",
+    "content": "One paper was submitted to <strong>Knowledge-Based Systems 2026</strong>!"
+  },
+  {
     "date": "2025.12",
     "title": "National Scholarship",
     "content": "Awarded the <strong>National Scholarship</strong> (Top 1%)!"
@@ -16,11 +31,6 @@
   },
   {
     "date": "2025.09",
-    "title": "Paper Accepted by IEEE BIBM",
-    "content": "One paper has been accepted by <strong>IEEE BIBM 2025</strong>!"
-  },
-  {
-    "date": "2025.09",
     "title": "Joined Baidu for Internship",
     "content": "Joined <strong>Baidu</strong> as an intern in September 2025!"
   },
@@ -30,14 +40,14 @@
     "content": "Admitted to <strong>Peking University</strong> through the postgraduate recommendation program!"
   },
   {
-    "date": "2025.08",
-    "title": "Paper Accepted by IFIP NPC",
-    "content": "One paper has been accepted by <strong>IFIP NPC 2025</strong>!"
-  },
-  {
     "date": "2025.05",
     "title": "PaddlePaddle Sailing Program 5th Edition",
     "content": "Won <strong>2nd Place</strong> in PaddlePaddle Sailing Program 5th Edition (Only undergraduate among all awardees)!"
+  },
+  {
+    "date": "2025.03",
+    "title": "Joined Paddle for Remote Internship",
+    "content": "Joined <strong>Paddle</strong> as an intern in March 2025!"
   },
   {
     "date": "2024.07",

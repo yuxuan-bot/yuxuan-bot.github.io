@@ -365,17 +365,7 @@ details summary {
     display: none;
 }
 
-/* News Section - Auto Scroll */
-.news-scroll-wrapper {
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    background: white;
-    padding: 1rem;
-}
-
+/* News Section - Static Style */
 .news-list {
     display: flex;
     flex-direction: column;

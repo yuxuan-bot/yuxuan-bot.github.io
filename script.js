@@ -83,34 +83,36 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Load news data
-    let newsJsonPath = 'data/news.json';
-    if (window.location.pathname.includes('/pages/')) {
-        newsJsonPath = '../data/news.json';
+    // Load news data - use view-all.js for homepage
+    const latestNewsSection = document.getElementById('latest-news');
+    if (latestNewsSection) {
+        // Ensure initViewAll is available
+        if (typeof initViewAll === 'function') {
+            initViewAll('view-all-news', 'news-container', 'data/news.json', renderNewsItems, 6);
+        } else {
+            console.error('initViewAll function not found');
+        }
     }
 
-    fetch(newsJsonPath)
-        .then(response => response.json())
-        .then(data => {
-            const latestNewsSection = document.getElementById('latest-news');
-            if (latestNewsSection) {
-                renderNewsItems(data, 'news-container');
-                initNewsAutoScroll();
-            }
-
-            const allNewsSection = document.getElementById('all-news');
-            if (allNewsSection) {
-                renderNewsItems(data, 'all-news-container');
-            }
-        })
-        .catch(error => {
-            console.error('Error loading news data:', error);
-        });
+    // Load all news for dedicated page
+    const allNewsSection = document.getElementById('all-news');
+    if (allNewsSection) {
+        let newsJsonPath = '../data/news.json';
+        fetch(newsJsonPath)
+            .then(response => response.json())
+            .then(data => renderNewsItems(data, 'all-news-container'))
+            .catch(error => console.error('Error loading news data:', error));
+    }
 
     // Load honors data - use view-all.js for homepage
     const honorsSection = document.getElementById('honors');
     if (honorsSection) {
-        initViewAll('view-all-honors', 'honors-container', 'data/honors.json', renderHonorsItems, 8);
+        // Ensure initViewAll is available
+        if (typeof initViewAll === 'function') {
+            initViewAll('view-all-honors', 'honors-container', 'data/honors.json', renderHonorsItems, 8);
+        } else {
+            console.error('initViewAll function not found');
+        }
     }
 
     // Load all honors for dedicated page
@@ -648,40 +650,4 @@ function setupLinkObserver() {
 
     // Start observing the target node for configured mutations
     observer.observe(targetNode, config);
-}
-
-// Auto-scroll function for News section
-function initNewsAutoScroll() {
-    const wrapper = document.querySelector('.news-scroll-wrapper');
-    const container = document.getElementById('news-container');
-
-    if (!wrapper || !container) return;
-
-    const scrollSpeed = 15; // pixels per second
-    let scrollPosition = 0;
-    let isPaused = false;
-    let animationId = null;
-
-    // Clone content for seamless loop
-    const clone = container.cloneNode(true);
-    clone.id = 'news-container-clone';
-    wrapper.appendChild(clone);
-
-    function scroll() {
-        if (!isPaused) {
-            scrollPosition += scrollSpeed / 60;
-
-            if (scrollPosition >= container.offsetHeight) {
-                scrollPosition = 0;
-            }
-
-            wrapper.scrollTop = scrollPosition;
-        }
-        animationId = requestAnimationFrame(scroll);
-    }
-
-    wrapper.addEventListener('mouseenter', () => { isPaused = true; });
-    wrapper.addEventListener('mouseleave', () => { isPaused = false; });
-
-    animationId = requestAnimationFrame(scroll);
 }
