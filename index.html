@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script async
+        src="//githubcdn.qiushaocloud.top/gh/qiushaocloud/site-counter@master/dist/qiushaocloud_site_counter.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -61,6 +63,7 @@
                             <li><a href="#honors" class="nav-item">Honors</a></li>
                             <li><a href="#services" class="nav-item">Service</a></li>
                             <li><a href="#experience" class="nav-item">Experience</a></li>
+                            <li><a href="#skills" class="nav-item">Life</a></li>
                             <li><a href="#visitor" class="nav-item">Visitor</a></li>
                         </ul>
                     </div>
@@ -125,6 +128,17 @@
                             <h1 class="text-3xl font-serif font-bold text-primary mb-2">Yuxuan Nie</h1>
                             <p class="text-lg text-accent font-medium mb-1">Master Student</p>
                             <p class="text-neutral-600 mb-2">Peking University</p>
+                            <!-- Visitor Counter -->
+                            <div class="text-xs text-neutral-400 mt-2 flex justify-center gap-4">
+                                <div class="flex items-center gap-1" title="总访问量">
+                                    <i class="fas fa-eye"></i>
+                                    <span id="qiushaocloud_sitecounter_value_site_pv">0</span>
+                                </div>
+                                <div class="flex items-center gap-1" title="今日访问量">
+                                    <i class="fas fa-calendar-day"></i>
+                                    <span id="qiushaocloud_sitecounter_value_today_site_pv">0</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Visitor Links -->
@@ -401,7 +415,67 @@
                             </div>
                         </div>
                     </section>
+                    </section>
+                    <!-- Life Skills Section -->
+                    <section id="skills" class="scroll-mt-24">
+                        <div class="section-header mb-6">
+                            <h2 class="text-3xl font-serif font-bold text-primary">🎯 Life Skills & Fun Learning</h2>
+                            <p class="text-sm text-neutral-500 mt-1">Some small but joyful skills I’ve picked up along
+                                the way.</p>
+                        </div>
 
+                        <div class="skills-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                            <!-- Skill 1 -->
+                            <div
+                                class="skill-card bg-white border border-neutral-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div class="flex items-center mb-3">
+                                    <div class="text-2xl mr-3">🦐</div>
+                                    <h3 class="font-semibold text-primary">Shrimp Peeling Master</h3>
+                                </div>
+                                <p class="text-sm text-neutral-600 leading-relaxed">
+                                    Learned to peel shrimp quickly and cleanly, including removing the vein efficiently.
+                                </p>
+                            </div>
+
+                            <!-- Skill 2 -->
+                            <div
+                                class="skill-card bg-white border border-neutral-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div class="flex items-center mb-3">
+                                    <div class="text-2xl mr-3">⛷️</div>
+                                    <h3 class="font-semibold text-primary">Skiing Beginner</h3>
+                                </div>
+                                <p class="text-sm text-neutral-600 leading-relaxed">
+                                    Started skiing and learning balance, carving, and basic downhill control.
+                                </p>
+                            </div>
+
+                            <!-- Skill 3 -->
+                            <div
+                                class="skill-card bg-white border border-neutral-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div class="flex items-center mb-3">
+                                    <div class="text-2xl mr-3">🎸</div>
+                                    <h3 class="font-semibold text-primary">Guitar Practice</h3>
+                                </div>
+                                <p class="text-sm text-neutral-600 leading-relaxed">
+                                    Practicing chords and rhythm, exploring music as a creative outlet.
+                                </p>
+                            </div>
+
+                            <!-- Skill 4（可扩展） -->
+                            <div
+                                class="skill-card bg-white border border-neutral-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div class="flex items-center mb-3">
+                                    <div class="text-2xl mr-3">🍳</div>
+                                    <h3 class="font-semibold text-primary">Cooking Basics</h3>
+                                </div>
+                                <p class="text-sm text-neutral-600 leading-relaxed">
+                                    Learning simple dishes and improving daily life skills step by step.
+                                </p>
+                            </div>
+
+                        </div>
+                    </section>
                     <!-- Visitor Section -->
                     <section id="visitor" class="scroll-mt-24">
                         <div class="section-header mb-6">
@@ -417,7 +491,6 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
 
                 </div>
             </div>
