@@ -104,14 +104,14 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error loading news data:', error));
     }
 
-    // Load honors data - use view-all.js for homepage
+    // Load honors data - use specialized Honors function for homepage
     const honorsSection = document.getElementById('honors');
     if (honorsSection) {
-        // Ensure initViewAll is available
-        if (typeof initViewAll === 'function') {
-            initViewAll('view-all-honors', 'honors-container', 'data/honors.json', renderHonorsItems, 8);
+        // Ensure initHonorsViewAll is available
+        if (typeof initHonorsViewAll === 'function') {
+            initHonorsViewAll('view-all-honors', 'honors-container', 'data/honors.json');
         } else {
-            console.error('initViewAll function not found');
+            console.error('initHonorsViewAll function not found');
         }
     }
 
@@ -544,43 +544,67 @@ function renderHonorsItems(honorsData, containerId) {
     // Clear any existing content
     container.innerHTML = '';
 
-    // Add each honor item to the container
-    honorsData.forEach(honorItem => {
-        const honorElement = document.createElement('div');
-        honorElement.className = 'honor-item';
+    // Separate selected and other honors
+    const selectedHonors = honorsData.filter(h => h.selected);
+    const otherHonors = honorsData.filter(h => !h.selected);
 
-        // Create the year element
-        const yearElement = document.createElement('div');
-        yearElement.className = 'honor-year';
+    // Create selected awards section
+    if (selectedHonors.length > 0) {
+        selectedHonors.forEach(honorItem => {
+            const item = createHonorItem(honorItem, true);
+            container.appendChild(item);
+        });
 
-        const yearHighlight = document.createElement('span');
-        yearHighlight.className = 'year-highlight';
-        yearHighlight.textContent = honorItem.date;
-        yearElement.appendChild(yearHighlight);
-
-        // Create the content element
-        const contentElement = document.createElement('div');
-        contentElement.className = 'honor-content';
-
-        // Create the title element
-        const titleElement = document.createElement('h3');
-        titleElement.textContent = honorItem.title;
-        contentElement.appendChild(titleElement);
-
-        // Create the description element if it exists
-        if (honorItem.description) {
-            const descElement = document.createElement('p');
-            descElement.innerHTML = honorItem.description;
-            contentElement.appendChild(descElement);
+        // Add divider if there are other honors
+        if (otherHonors.length > 0) {
+            const divider = document.createElement('div');
+            divider.className = 'awards-divider';
+            container.appendChild(divider);
         }
+    }
 
-        // Add year and content to the honor item
-        honorElement.appendChild(yearElement);
-        honorElement.appendChild(contentElement);
+    // Create all other honors section
+    if (otherHonors.length > 0) {
+        otherHonors.forEach(honorItem => {
+            const item = createHonorItem(honorItem, false);
+            container.appendChild(item);
+        });
+    }
+}
 
-        // Add the honor item to the container
-        container.appendChild(honorElement);
-    });
+function createHonorItem(honorItem, isSelected = false) {
+    const item = document.createElement('div');
+    item.className = isSelected ? 'honor-item honor-item-selected' : 'honor-item';
+
+    // Create the year element
+    const yearElement = document.createElement('div');
+    yearElement.className = 'honor-year';
+    const yearHighlight = document.createElement('span');
+    yearHighlight.className = 'year-highlight';
+    yearHighlight.textContent = honorItem.date;
+    yearElement.appendChild(yearHighlight);
+
+    // Create the content element
+    const contentElement = document.createElement('div');
+    contentElement.className = 'honor-content';
+
+    // Create the title element
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = honorItem.title;
+    contentElement.appendChild(titleElement);
+
+    // Create the description element if it exists
+    if (honorItem.description) {
+        const descElement = document.createElement('p');
+        descElement.innerHTML = honorItem.description;
+        contentElement.appendChild(descElement);
+    }
+
+    // Add year and content to the honor item
+    item.appendChild(yearElement);
+    item.appendChild(contentElement);
+
+    return item;
 }
 
 // Function to make all links open in a new tab

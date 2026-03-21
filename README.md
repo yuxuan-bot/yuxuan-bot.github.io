@@ -74,6 +74,7 @@ Then go to **Settings → Pages** in your repository:
 ## Key Features
 
 * **Data-Driven**: All content is independent of HTML; updating JSON files updates the website.
+* **Highlighted Selected Awards**: High-impact awards are visually emphasized using a gold left border and a subtle tinted background, creating a clear distinction from regular entries while maintaining a clean academic aesthetic.
 * **Professional Layout**: Crimson Text + Inter fonts, Gold accent, glass-style navbar.
 
   * Desktop: Fixed sidebar layout with sticky personal info card.

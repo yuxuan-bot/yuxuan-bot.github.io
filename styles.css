@@ -547,3 +547,90 @@ a.link-blue-underline:hover {
     color: #004499 !important;
     text-decoration: underline !important;
 }
+
+/* ============================================== */
+/* Honors Section - Academic Minimal Style        */
+/* ============================================== */
+
+/* Honor Item - Base Style */
+.honor-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 0.5rem;
+}
+
+.honor-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Selected Honor Item - Light Highlight */
+.honor-item-selected {
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid #d4a562;
+    border-bottom: 1px solid #f1f5f9;
+    background-color: rgba(212, 165, 98, 0.04);
+}
+
+/* Honor Year */
+.honor-year {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: #d4a562;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.year-highlight {
+    letter-spacing: 0.02em;
+}
+
+/* Honor Content */
+.honor-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 0.25rem 0;
+}
+
+.honor-content p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Awards Divider */
+.awards-divider {
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 1.5rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .honor-item {
+        grid-template-columns: 70px 1fr;
+        gap: 1rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .honor-item-selected {
+        padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .honor-year {
+        font-size: 0.85rem;
+    }
+
+    .honor-content h3 {
+        font-size: 0.95rem;
+    }
+}

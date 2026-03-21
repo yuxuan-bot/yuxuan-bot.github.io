@@ -1,15 +1,25 @@
 [
   {
     "date": "Dec. 2025",
-    "title": "PaddlePaddle Open Source Star of the Year 2025 (Awarded in Beijing, Top 10 Recipients Annually)"
+    "title": "PaddlePaddle Open Source Star of the Year 2025 (Awarded in Beijing, Top 10 Recipients Annually)",
+    "selected": true
   },
   {
-    "date": "Dec. 2025",
-    "title": "University First-Class Scholarship (Top 1%)"
+    "date": "May. 2025",
+    "title": "PaddlePaddle Sailing Program 5th Edition (2nd Place, Only Undergraduate Among All Awardees)"
   },
   {
     "date": "Dec. 2025",
     "title": "National First Prize, Computer Competence Challenge"
+  },
+  {
+    "date": "Oct. 2025",
+    "title": "National Scholarship (Top 1%)",
+    "selected": true
+  },
+  {
+    "date": "Dec. 2025",
+    "title": "University First-Class Scholarship (Top 1%)"
   },
   {
     "date": "Nov. 2025",
@@ -17,11 +27,8 @@
   },
   {
     "date": "Oct. 2025",
-    "title": "National Scholarship (Top 1%)"
-  },
-  {
-    "date": "Oct. 2025",
-    "title": "Special Scholarship (Top 10 University-wide)"
+    "title": "Special Scholarship (Top 10 University-wide)",
+    "selected": true
   },
   {
     "date": "Oct. 2025",
@@ -33,7 +40,8 @@
   },
   {
     "date": "Oct. 2025",
-    "title": "Paddle/docs Committer (Open Source Core Contributor)"
+    "title": "Paddle Committer (Open Source Core Contributor)",
+    "selected": true
   },
   {
     "date": "Sep. 2025",
@@ -54,10 +62,6 @@
   {
     "date": "Feb. 2025",
     "title": "Alibaba Tianchi Big Data Competition (Top 10, Top 1%)"
-  },
-  {
-    "date": "May. 2025",
-    "title": "PaddlePaddle Sailing Program 5th Edition (2nd Place, Only Undergraduate Among All Awardees)"
   },
   {
     "date": "Nov. 2024",
