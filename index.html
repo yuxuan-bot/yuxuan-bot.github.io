@@ -14,6 +14,19 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- font in news -->
+    <!-- ref: https://fonts.google.com/?category -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
+    <style>
+        #news-container * {
+            font-family: 'Playpen Sans' !important;
+            font-optical-sizing: auto;
+            font-weight: 500;
+        }
+    </style>
+    <!-- font in news -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script async
         src="//githubcdn.qiushaocloud.top/gh/qiushaocloud/site-counter@master/dist/qiushaocloud_site_counter.min.js"></script>
@@ -233,15 +246,16 @@
                             <p class="text-sm text-neutral-500 mt-1">Updates and highlights from my adventures.
                             </p>
                         </div>
-                        <div id="news-container" class="news-list space-y-4">
+                        <!-- <div id="news-container" class="news-list space-y-4 font-sans text-sm"> -->
+                        <div id="news-container" class="news-list space-y-4 font-playpen">
                             <!-- Dynamic Content -->
                         </div>
                         <div class="mt-4">
                             <a href="#" id="view-all-news"
                                 class="text-sm font-medium text-accent hover:text-accent-dark transition-colors">
-                                <span class="expand-text">View All</span>
-                                <span class="collapse-text" style="display:none;">Hide All</span>
-                                <i class="fas fa-arrow-right ml-1"></i>
+                                <!-- <span class="expand-text">View All</span> -->
+                                <!-- <span class="collapse-text" style="display:none;">Hide All</span> -->
+                                <!-- <i class="fas fa-arrow-right ml-1"></i> -->
                             </a>
                         </div>
                     </section>

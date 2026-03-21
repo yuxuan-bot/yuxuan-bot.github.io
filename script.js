@@ -491,7 +491,7 @@ function renderNewsItems(newsData, containerId) {
 
         // Create emoji and content text
         const textSpan = document.createElement('span');
-        textSpan.innerHTML = '🎉 ' + newsItem.content;
+        textSpan.innerHTML = '' + newsItem.content;
         contentElement.appendChild(textSpan);
 
         // Add links if provided in the links array format
