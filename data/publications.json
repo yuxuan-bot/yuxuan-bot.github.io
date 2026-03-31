@@ -12,7 +12,7 @@
       {
         "text": "Paper",
         "class": "paper-tag",
-        "link": "https://ieeexplore.ieee.org/abstract/document/11356358"
+        "link": "https://arxiv.org/abs/2505.19144v2"
       },
       {
         "text": "Code",
@@ -40,7 +40,7 @@
   },
   {
     "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
-    "authors": "<strong><u>Yuxuan Nie</u></strong>, Yuotng Song, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng",
+    "authors": "<strong><u>Yuxuan Nie</u></strong>, Yuotng Song, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng*",
     "type": "preprint",
     "isFirstAuthor": true,
     "showOnHomepage": true,

@@ -20,10 +20,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
     <style>
+        #news-container {
+            font-family: 'Playpen Sans', sans-serif !important;
+            font-optical-sizing: auto;
+            font-weight: 400;
+        }
+
+        #news-container strong,
+        #news-container b {
+            font-weight: 650 !important;
+            color: #1e293b;
+        }
+
         #news-container * {
             font-family: 'Playpen Sans' !important;
-            font-optical-sizing: auto;
-            font-weight: 500;
         }
     </style>
     <!-- font in news -->
@@ -61,7 +71,7 @@
                 <div class="flex-shrink-0">
                     <a href="#"
                         class="text-xl lg:text-2xl font-serif font-semibold text-primary hover:text-accent transition-colors duration-200">
-                        Yuxuan Nie
+                        Yuxuan Nie's Homepage
                     </a>
                 </div>
 
@@ -207,12 +217,13 @@
 
                     <!-- About Section -->
                     <section id="homepage" class="scroll-mt-24">
-                        <span id="about"></span> <!-- Anchor for About link -->
+                        <span id="about"></span>
                         <div class="section-header mb-6">
                             <h2 class="text-3xl font-serif font-bold text-primary">👋🏻 About Me</h2>
                         </div>
+
                         <div class="prose max-w-none text-neutral-600 text-justify formal-font">
-                            <p class="mb-4">
+                            <p class="mb-6">
                                 I am currently a senior undergraduate student majoring in Software
                                 Engineering at the School of Software Engineering, <a href="https://www.sei.ynu.edu.cn/"
                                     class="link-blue-underline">Yunnan University</a>, Kunming,
@@ -228,8 +239,52 @@
                                 with the goal of designing efficient, scalable, and trustworthy intelligent systems.
                             </p>
 
+                            <div class="mt-6 mb-8">
+                                <p class="mb-4 text-neutral-600">
+                                    Outside of my academic pursuits, I embrace a vibrant lifestyle and enjoy exploring
+                                    the world. Here are some small but joyful hobbies I’ve picked up along the way:
+                                </p>
+
+                                <ul class="list-none pl-0 space-y-3 text-base text-neutral-700 leading-relaxed">
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-lg">⛰️</span>
+                                        <span>Big fan of hiking and hitting the gym—keeps me sane and keeps my endurance
+                                            up.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-lg">⛷️</span>
+                                        <span>Learning to ski (total beginner here!), mostly trying not to fall while
+                                            figuring out how to carve.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-lg">🦐</span>
+                                        <span>I’ve low-key mastered the art of peeling shrimp perfectly intact. Super
+                                            therapeutic —— I just love the process.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-lg">📚</span>
+                                        <span>I'm an occasional reader—usually lose myself in a good detective or
+                                            mystery novel.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-lg">🍲</span>
+                                        <span>Total foodie. If there’s hotpot or BBQ involved, I’m there.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-lg">💻</span>
+                                        <span>Love messing around with new tech and contributing to OSS projects
+                                            whenever I can.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-3 text-lg">🐾</span>
+                                        <span>Obsessed with cats and dogs, especially Ragdolls. They're just the
+                                            best.</span>
+                                    </li>
+                                </ul>
+                            </div>
+
                             <div
-                                class="highlight-box bg-accent/10 border-l-4 border-accent p-4 rounded-r-lg text-left font-sans">
+                                class="highlight-box bg-accent/10 border-l-4 border-accent p-4 rounded-r-lg text-left font-sans mt-8">
                                 <p><strong><i class="fas fa-lightbulb text-accent mr-2"></i>I am actively seeking
                                         collaborators of like-minded interests.</strong> If you are interested in my
                                     work, please feel free to contact me via email.</p>
@@ -347,6 +402,21 @@
                                     <p class="text-sm text-accent font-medium">Sep. 2025 | Beijing</p>
                                     <p class="text-sm text-neutral-600 mt-1 leading-relaxed">
                                         Invited Speaker, Sharing Open Source Experience
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- PaddlePaddle Teaching Assistant -->
+                            <div class="timeline-item flex gap-4">
+                                <div
+                                    class="school-logo-container w-16 h-16 flex-shrink-0 bg-white rounded-lg shadow-sm p-2 flex items-center justify-center border border-neutral-100 text-2xl text-accent">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3 class="font-semibold text-primary">PaddlePaddle Bootcamp Teaching Assistant</h3>
+                                    <p class="text-sm text-accent font-medium">Baidu PaddlePaddle Program</p>
+                                    <p class="text-sm text-neutral-600 mt-1 leading-relaxed">
+                                        Cohort V, VI; XJTU & XDU Student Edition; Chinese New Year (Year of the Horse)
+                                        Special Edition
                                     </p>
                                 </div>
                             </div>
