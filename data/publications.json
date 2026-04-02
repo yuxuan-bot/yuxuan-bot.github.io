@@ -1,7 +1,7 @@
 [
   {
     "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
-    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng†",
+    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng#",
     "type": "accepted",
     "isFirstAuthor": true,
     "showOnHomepage": true,
@@ -23,7 +23,7 @@
   },
   {
     "title": "Carbon-Aware Task Scheduling in DistributedComputing Continuum: A Lyapunov-GuidedReinforcement Learning Approach",
-    "authors": "Shujia Niu, Zhenli He†, Yuanfei Xiao, <strong><u>Yuxuan Nie</u></strong>, Yao Chen, Bingning Liu",
+    "authors": "Shujia Niu, Zhenli He#, Yuanfei Xiao, <strong><u>Yuxuan Nie</u></strong>, Yao Chen, Bingning Liu",
     "type": "accepted",
     "isFirstAuthor": false,
     "showOnHomepage": false,
@@ -40,7 +40,7 @@
   },
   {
     "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
-    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng†",
+    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng#",
     "type": "preprint",
     "isFirstAuthor": true,
     "showOnHomepage": true,
