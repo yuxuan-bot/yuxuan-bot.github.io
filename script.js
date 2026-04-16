@@ -254,34 +254,23 @@ function loadPublications() {
                         });
                     }
 
-                    // Thumbnail Preview Button (if thumbnail exists)
+                    // ====== 修改的部分：默认显示图片，移除按钮 ======
                     let thumbBox = null;
                     if (pub.thumbnail) {
-                        const btnPreview = document.createElement('button');
-                        btnPreview.className = 'pub-link-btn pub-btn-preview';
-                        btnPreview.textContent = 'Image';
-                        btnPreview.onclick = function () {
-                            if (li.classList.contains('with-thumbnail-expanded')) {
-                                li.classList.remove('with-thumbnail-expanded');
-                                thumbBox.style.display = 'none';
-                                btnPreview.classList.remove('active');
-                            } else {
-                                li.classList.add('with-thumbnail-expanded');
-                                thumbBox.style.display = 'block';
-                                btnPreview.classList.add('active');
-                            }
-                        };
-                        line1.appendChild(btnPreview);
+                        // 1. 默认给 li 添加排版 class，触发图片和文字并排的 CSS
+                        li.classList.add('with-thumbnail-expanded');
 
-                        // Create thumbnail container
+                        // 2. 创建图片容器，不再设置为 display: none
                         thumbBox = document.createElement('div');
                         thumbBox.className = 'pub-thumbnail-box';
-                        thumbBox.style.display = 'none';
+                        // thumbBox.style.display = 'none'; // 这行删除了
+
                         const thumbImg = document.createElement('img');
                         thumbImg.src = pub.thumbnail;
                         thumbImg.alt = 'Publication Thumbnail';
                         thumbBox.appendChild(thumbImg);
                     }
+                    // ===============================================
 
                     contentWrapper.appendChild(line1);
 
@@ -371,7 +360,7 @@ function getVenueShortName(venueStr, year) {
     let suffix = '';
 
     // Check if it is a conference that needs year suffix
-    const conferences = ['NeurIPS', 'CVPR', 'ICCV', 'ECCV', 'ICRA', 'AAAI', 'BIBM', 'IFIP NPC', 'INFOCOM', 'MOBICOM'];
+    const conferences = ['NeurIPS', 'CVPR', 'ICCV', 'NSDI', 'ECCV', 'ICRA', 'AAAI', 'BIBM', 'IFIP NPC', 'INFOCOM', 'MOBICOM'];
     for (const conf of conferences) {
         if (s.includes(conf)) {
             // Get last two digits of year
@@ -424,6 +413,7 @@ function getVenueFullName(venueStr, year) {
 
     // Conference Full Names Mapping (With Year Suffix)
     if (s.includes('NeurIPS')) return `Annual Conference on Neural Information Processing Systems (NeurIPS${yearSuffix})`;
+    if (s.includes('NSDI')) return `USENIXSymposium on Networked Systems Design and Implementation (NSDI${yearSuffix})`;
     if (s.includes('CVPR')) return `IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR${yearSuffix})`;
     if (s.includes('ICCV')) return `IEEE/CVF International Conference on Computer Vision (ICCV${yearSuffix})`;
     if (s.includes('ECCV')) return `European Conference on Computer Vision (ECCV${yearSuffix})`;
@@ -444,7 +434,7 @@ function getCCFRank(fullName, originalVenue) {
 
     // CCF-A
     if (v.includes('tdsc') || v.includes('dependable and secure') ||
-        v.includes('tmc') || v.includes('mobile computing') ||
+        v.includes('nsdi') || v.includes('tmc') || v.includes('mobile computing') ||
         v.includes('aaai') || v.includes('neurips') ||
         v.includes('cvpr') || v.includes('iccv') ||
         v.includes('infocom') || v.includes('jsac')) {
