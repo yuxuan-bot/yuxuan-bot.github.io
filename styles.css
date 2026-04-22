@@ -634,3 +634,37 @@ a.link-blue-underline:hover {
         font-size: 0.95rem;
     }
 }
+
+/* 中科院分区基础样式 */
+.cas-rank {
+    font-size: 0.85em;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+/* 针对不同分区设置不同颜色 (可自行调整) */
+.cas-q1 {
+    background-color: #ffeaea;
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
+}
+
+.cas-q2 {
+    background-color: #fff3e0;
+    color: #ef6c00;
+    border: 1px solid #ef6c00;
+}
+
+.cas-q3 {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+}
+
+.cas-q4 {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #1565c0;
+}

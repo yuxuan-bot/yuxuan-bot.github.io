@@ -284,7 +284,7 @@ function loadPublications() {
                     const line3 = document.createElement('div');
                     line3.className = 'pub-line-3';
 
-                    // 1. Badge (Oral/Spotlight) - Red Box at start
+                    // 1. Badge (Oral/Spotlight)
                     let highlightText = pub.highlight || '';
                     let badgeText = '';
                     if (highlightText.toLowerCase().includes('oral')) badgeText = 'Oral';
@@ -297,30 +297,75 @@ function loadPublications() {
                         line3.appendChild(badge);
                     }
 
-                    // 2. Full Venue Name (No Year for Journals)
+                    // 2. Full Venue Name & Status
                     let fullVenueName = getVenueFullName(pub.venue, pub.year);
+                    const venueLower = pub.venue.toLowerCase();
 
-                    // Check for revision status
-                    const isRevision = pub.venue.toLowerCase().includes('major revision') ||
-                        pub.venue.toLowerCase().includes('minor revision');
+                    // 判断是否在投或修改
+                    let statusPrefix = "";
+                    if (venueLower.includes('under review')) {
+                        statusPrefix = "Under Review";
+                    } else if (venueLower.includes('major revision')) {
+                        statusPrefix = "Major Revision";
+                    } else if (venueLower.includes('minor revision')) {
+                        statusPrefix = "Minor Revision";
+                    }
 
-                    if (isRevision) {
-                        fullVenueName = "Under Review";
+                    // 如果处于在投/修改状态，保留期刊名并在前面加上状态
+                    // 比如展示为: "Under Review @ IEEE Internet of Things Journal"
+                    if (statusPrefix) {
+                        fullVenueName = `${statusPrefix} @ ${fullVenueName}`;
                     }
 
                     const venueNameSpan = document.createElement('span');
                     venueNameSpan.textContent = fullVenueName;
                     line3.appendChild(venueNameSpan);
 
-                    // 3. CCF Rank
-                    if (!isRevision) {
-                        const ccfRank = getCCFRank(fullVenueName, pub.venue);
-                        if (ccfRank) {
-                            const rankSpan = document.createElement('span');
-                            rankSpan.className = `ccf-rank ccf-${ccfRank.toLowerCase()}`;
-                            rankSpan.textContent = `(CCF-${ccfRank})`;
-                            line3.appendChild(rankSpan);
+                    // 3. 学术级别 (直接移除之前的 if 限制，只要有信息就全部展示)
+                    // 处理 CCF 分区
+                    const ccfRank = getCCFRank(fullVenueName, pub.venue);
+                    if (ccfRank) {
+                        const rankSpan = document.createElement('span');
+                        rankSpan.className = `ccf-rank ccf-${ccfRank.toLowerCase()}`;
+                        rankSpan.textContent = `(CCF-${ccfRank})`;
+                        line3.appendChild(rankSpan);
+                        line3.appendChild(document.createTextNode(' '));
+                    }
+
+                    // 合并处理：中科院分区 + Top 标识
+                    const casRank = getCASRank(fullVenueName, pub.venue);
+
+                    if (casRank || pub.isTop) {
+                        const casSpan = document.createElement('span');
+                        // 依然保留中科院分区的颜色 class
+                        casSpan.className = `cas-rank ${casRank ? 'cas-q' + casRank : ''}`;
+
+                        let casContent = "(";
+                        if (casRank) {
+                            casContent += `中科院${casRank}区`;
                         }
+
+                        if (pub.isTop) {
+                            // 如果既有分区又有Top，中间加个空格
+                            if (casRank) casContent += " ";
+                            // 加上一个特殊的 class 让 Top 依然可以有醒目的颜色
+                            casContent += `<span class="inline-top">Top</span>`;
+                        }
+
+                        casContent += ")";
+
+                        // 因为这里包含了 HTML 标签 (span)，所以用 innerHTML
+                        casSpan.innerHTML = casContent;
+                        line3.appendChild(casSpan);
+                        line3.appendChild(document.createTextNode(' '));
+                    }
+
+                    // 从 JSON 读取影响因子
+                    if (pub.impactFactor) {
+                        const ifSpan = document.createElement('span');
+                        ifSpan.className = 'impact-factor';
+                        ifSpan.textContent = `(IF: ${pub.impactFactor})`;
+                        line3.appendChild(ifSpan);
                     }
 
                     contentWrapper.appendChild(line3);
@@ -380,6 +425,7 @@ function getVenueShortName(venueStr, year) {
     // Journals or specific conferences
     if (s.includes('TDSC')) return 'IEEE TDSC' + revisionSuffix;
     if (s.includes('TMC')) return 'IEEE TMC' + revisionSuffix;
+    if (s.includes('ESWA')) return 'Elsevier ESWA' + revisionSuffix;
     if (s.includes('JSAC')) return 'IEEE JSAC' + revisionSuffix;
     if (s.includes('TGCN')) return 'IEEE TGCN' + revisionSuffix;
     if (s.includes('LNET')) return 'IEEE LNET' + revisionSuffix;
@@ -405,6 +451,7 @@ function getVenueFullName(venueStr, year) {
     // Journal Full Names Mapping (No Year)
     if (s.includes('TDSC')) return 'IEEE Transactions on Dependable and Secure Computing';
     if (s.includes('TMC')) return 'IEEE Transactions on Mobile Computing';
+    if (s.includes('ESWA')) return 'Expert Systems With Applications';
     if (s.includes('JSAC')) return 'IEEE Journal on Selected Areas in Communications';
     if (s.includes('TGCN')) return 'IEEE Transactions on Green Communications and Networking';
     if (s.includes('TNSE')) return 'IEEE Transactions on Network Science and Engineering';
@@ -453,7 +500,36 @@ function getCCFRank(fullName, originalVenue) {
 
     return null;
 }
+// Function to get CAS Rank (中科院分区)
+function getCASRank(fullName, originalVenue) {
+    const v = (fullName + ' ' + originalVenue).toLowerCase();
 
+    // 中科院 1区
+    if (v.includes('eswa') || v.includes('expert systems') ||
+        v.includes('iotj') || v.includes('internet of things journal') ||
+        v.includes('jsac')) {
+        return '1';
+    }
+
+    // 中科院 2区
+    if (v.includes('tmc') || v.includes('mobile computing') ||
+        v.includes('tdsc') || v.includes('dependable and secure computing')) {
+        return '2';
+    }
+
+    // 中科院 3区
+    if (v.includes('tnse') || v.includes('network science')) {
+        return '3';
+    }
+
+    // 中科院 4区
+    if (v.includes('lnet') || v.includes('networking letters')) {
+        return '4';
+    }
+
+    // 会议通常不看中科院分区，所以默认返回 null
+    return null;
+}
 // Function to render news items
 function renderNewsItems(newsData, containerId) {
     const container = document.getElementById(containerId);
