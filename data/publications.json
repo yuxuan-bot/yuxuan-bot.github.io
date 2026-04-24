@@ -1,24 +1,5 @@
 [
   {
-    "title": "Reliability-Constrained SFC Orchestration in Mobile Edge Computing via Lyapunov-Guided Reinforcement Learning",
-    "authors": "Yuanfei Xiao, Shujia Niu, Qixin Peng, <strong><u>Yuxuan Nie</u></strong>, Jixian Zhang, Zhenli He#",
-    "type": "accepted",
-    "isFirstAuthor": false,
-    "showOnHomepage": true,
-    "venue": "Springer ESWA (Under Review)",
-    "year": "2026",
-    "thumbnail": "/assets/publications/eswa2026.png",
-    "impactFactor": "7.5",
-    "isTop": true,
-    "tags": [
-      {
-        "text": "Paper",
-        "class": "paper-tag",
-        "link": "https://www.journals.elsevier.com/expert-systems-with-applications"
-      }
-    ]
-  },
-  {
     "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
     "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng#",
     "type": "accepted",

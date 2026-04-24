@@ -1,108 +1,126 @@
-[
-    {
-        "title": "[Under Review] ARER: Rectifying Cross-Slot Feedback for Thermal-Aware Edge Offloading",
-        "authors": "<strong><u>Yuxuan Nie</u></strong>, Xiaolong Zhai, Yuanfei Xiao, Zuxian Wang, Shujia Niu, Zhenli He†",
-        "type": "accepted",
-        "isFirstAuthor": true,
-        "showOnHomepage": true,
-        "venue": "NSDI 2027",
-        "year": "2027",
-        "thumbnail": "/assets/publications/nsdi27.png",
-        "tags": [
-            {
-                "text": "Paper",
-                "class": "paper-tag",
-                "link": "https://arxiv.org"
-            }
-        ]
-    },
-    {
-        "title": "[Under Review] ARER: Rectifying Cross-Slot Feedback for Thermal-Aware Edge Offloading",
-        "authors": "<strong><u>Yuxuan Nie</u></strong>, Xiaolong Zhai, Yuanfei Xiao, Zuxian Wang, Shujia Niu, Zhenli He†",
-        "type": "accepted",
-        "isFirstAuthor": true,
-        "showOnHomepage": true,
-        "venue": "NSDI 2027",
-        "year": "2027",
-        "thumbnail": "/assets/publications/nsdi27.png",
-        "tags": [
-            {
-                "text": "Paper",
-                "class": "paper-tag",
-                "link": "https://arxiv.org"
-            }
-        ]
-    },
-    {
-        "title": "[Under Review] ARER: Rectifying Cross-Slot Feedback for Thermal-Aware Edge Offloading",
-        "authors": "<strong><u>Yuxuan Nie</u></strong>, Xiaolong Zhai, Yuanfei Xiao, Zuxian Wang, Shujia Niu, Zhenli He†",
-        "type": "accepted",
-        "isFirstAuthor": true,
-        "showOnHomepage": true,
-        "venue": "NSDI 2027",
-        "year": "2027",
-        "thumbnail": "/assets/publications/2027-nsdi/image.png",
-        "tags": [
-            {
-                "text": "Paper",
-                "class": "paper-tag",
-                "link": "https://arxiv.org"
-            }
-        ]
-    },
-    {
-        "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
-        "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng†",
-        "type": "accepted",
-        "isFirstAuthor": true,
-        "showOnHomepage": true,
-        "venue": "BIBM 2025",
-        "year": "2025",
-        "thumbnail": "assets/publications/2025-bibm/thumbnail.png",
-        "tags": [
-            {
-                "text": "Paper",
-                "class": "paper-tag",
-                "link": "https://arxiv.org/abs/2505.19144v2"
-            },
-            {
-                "text": "Code",
-                "class": "code-tag",
-                "link": "https://github.com/Echo-Nie/DPASyn.git"
-            }
-        ]
-    },
-    {
-        "title": "Carbon-Aware Task Scheduling in DistributedComputing Continuum: A Lyapunov-GuidedReinforcement Learning Approach",
-        "authors": "Shujia Niu, Zhenli He†, Yuanfei Xiao, <strong><u>Yuxuan Nie</u></strong>, Yao Chen, Bingning Liu",
-        "type": "accepted",
-        "isFirstAuthor": false,
-        "showOnHomepage": false,
-        "venue": "IFIP NPC 2025",
-        "year": "2025",
-        "thumbnail": "assets/publications/2025-npc/thumbnail.png",
-        "tags": [
-            {
-                "text": "Paper",
-                "class": "paper-tag",
-                "link": "https://link.springer.com/chapter/10.1007/978-3-032-10459-5_18"
-            }
-        ]
-    },
-    {
-        "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
-        "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng†",
-        "type": "preprint",
-        "isFirstAuthor": true,
-        "showOnHomepage": true,
-        "venue": "arXiv",
-        "thumbnail": "assets/publications/2025-bibm/thumbnail.png",
-        "tags": [
-            {
-                "text": "Paper",
-                "class": "paper-tag",
-                "link": "https://arxiv.org/abs/2505.19144v2"
-            }
-        ]
-    }
+[{
+    "title": "Reliability-Constrained SFC Orchestration in Mobile Edge Computing via Lyapunov-Guided Reinforcement Learning",
+    "authors": "Yuanfei Xiao, Shujia Niu, Qixin Peng, <strong><u>Yuxuan Nie</u></strong>, Jixian Zhang, Zhenli He#",
+    "type": "accepted",
+    "isFirstAuthor": false,
+    "showOnHomepage": true,
+    "venue": "Springer ESWA (Under Review)",
+    "year": "2026",
+    "thumbnail": "/assets/publications/eswa2026.png",
+    "impactFactor": "7.5",
+    "isTop": true,
+    "tags": [
+        {
+            "text": "Paper",
+            "class": "paper-tag",
+            "link": "https://www.journals.elsevier.com/expert-systems-with-applications"
+        }
+    ]
+},
+{
+    "title": "[Under Review] ARER: Rectifying Cross-Slot Feedback for Thermal-Aware Edge Offloading",
+    "authors": "<strong><u>Yuxuan Nie</u></strong>, Xiaolong Zhai, Yuanfei Xiao, Zuxian Wang, Shujia Niu, Zhenli He†",
+    "type": "accepted",
+    "isFirstAuthor": true,
+    "showOnHomepage": true,
+    "venue": "NSDI 2027",
+    "year": "2027",
+    "thumbnail": "/assets/publications/nsdi27.png",
+    "tags": [
+        {
+            "text": "Paper",
+            "class": "paper-tag",
+            "link": "https://arxiv.org"
+        }
+    ]
+},
+{
+    "title": "[Under Review] ARER: Rectifying Cross-Slot Feedback for Thermal-Aware Edge Offloading",
+    "authors": "<strong><u>Yuxuan Nie</u></strong>, Xiaolong Zhai, Yuanfei Xiao, Zuxian Wang, Shujia Niu, Zhenli He†",
+    "type": "accepted",
+    "isFirstAuthor": true,
+    "showOnHomepage": true,
+    "venue": "NSDI 2027",
+    "year": "2027",
+    "thumbnail": "/assets/publications/nsdi27.png",
+    "tags": [
+        {
+            "text": "Paper",
+            "class": "paper-tag",
+            "link": "https://arxiv.org"
+        }
+    ]
+},
+{
+    "title": "[Under Review] ARER: Rectifying Cross-Slot Feedback for Thermal-Aware Edge Offloading",
+    "authors": "<strong><u>Yuxuan Nie</u></strong>, Xiaolong Zhai, Yuanfei Xiao, Zuxian Wang, Shujia Niu, Zhenli He†",
+    "type": "accepted",
+    "isFirstAuthor": true,
+    "showOnHomepage": true,
+    "venue": "NSDI 2027",
+    "year": "2027",
+    "thumbnail": "/assets/publications/2027-nsdi/image.png",
+    "tags": [
+        {
+            "text": "Paper",
+            "class": "paper-tag",
+            "link": "https://arxiv.org"
+        }
+    ]
+},
+{
+    "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
+    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng†",
+    "type": "accepted",
+    "isFirstAuthor": true,
+    "showOnHomepage": true,
+    "venue": "BIBM 2025",
+    "year": "2025",
+    "thumbnail": "assets/publications/2025-bibm/thumbnail.png",
+    "tags": [
+        {
+            "text": "Paper",
+            "class": "paper-tag",
+            "link": "https://arxiv.org/abs/2505.19144v2"
+        },
+        {
+            "text": "Code",
+            "class": "code-tag",
+            "link": "https://github.com/Echo-Nie/DPASyn.git"
+        }
+    ]
+},
+{
+    "title": "Carbon-Aware Task Scheduling in DistributedComputing Continuum: A Lyapunov-GuidedReinforcement Learning Approach",
+    "authors": "Shujia Niu, Zhenli He†, Yuanfei Xiao, <strong><u>Yuxuan Nie</u></strong>, Yao Chen, Bingning Liu",
+    "type": "accepted",
+    "isFirstAuthor": false,
+    "showOnHomepage": false,
+    "venue": "IFIP NPC 2025",
+    "year": "2025",
+    "thumbnail": "assets/publications/2025-npc/thumbnail.png",
+    "tags": [
+        {
+            "text": "Paper",
+            "class": "paper-tag",
+            "link": "https://link.springer.com/chapter/10.1007/978-3-032-10459-5_18"
+        }
+    ]
+},
+{
+    "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
+    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng†",
+    "type": "preprint",
+    "isFirstAuthor": true,
+    "showOnHomepage": true,
+    "venue": "arXiv",
+    "thumbnail": "assets/publications/2025-bibm/thumbnail.png",
+    "tags": [
+        {
+            "text": "Paper",
+            "class": "paper-tag",
+            "link": "https://arxiv.org/abs/2505.19144v2"
+        }
+    ]
+}
 ]
