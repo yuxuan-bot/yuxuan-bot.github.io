@@ -57,7 +57,7 @@ h6 {
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: #d4a562;
+    background-color: #743481;
     /* accent */
     transition: width 0.3s ease;
 }
@@ -89,7 +89,7 @@ section {
     left: 0;
     width: 40%;
     height: 3px;
-    background-color: rgba(212, 165, 98, 0.3);
+    background-color: rgba(212, 98, 98, 0.3);
     /* accent with opacity */
     z-index: -1;
 }
@@ -151,19 +151,19 @@ section {
 
 /* Utility */
 .text-accent {
-    color: #d4a562;
+    color: #743481;
 }
 
 .bg-accent {
-    background-color: #d4a562;
+    background-color: #743481;
 }
 
 .border-accent {
-    border-color: #d4a562;
+    border-color: #743481;
 }
 
 .hover\:text-accent:hover {
-    color: #d4a562;
+    color: #743481;
 }
 
 /* Research Highlights (Accordion/Details Style if needed, but using clean list for now) */
@@ -234,9 +234,9 @@ details summary {
 }
 
 .pub-link-btn:hover {
-    border-color: #d4a562;
-    color: #d4a562;
-    background-color: #fffbeb;
+    border-color: #743481;
+    color: #743481;
+    background-color: #b56fcc;
 }
 
 .tag-arxiv {
@@ -258,9 +258,9 @@ details summary {
 }
 
 .pub-title-link:hover {
-    color: #d4a562;
+    color: #743481;
     /* accent */
-    border-bottom-color: #d4a562;
+    border-bottom-color: #743481;
 }
 
 .pub-line-2 {
@@ -312,7 +312,7 @@ details summary {
 
 .pub-highlight {
     font-size: 0.85rem;
-    color: #d97706;
+    color: #d90606;
     /* amber-600 */
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -354,9 +354,9 @@ details summary {
 }
 
 .publication:hover {
-    border-color: #d4a562;
+    border-color: #743481;
     /* accent */
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px -10px rgba(208, 130, 237, 0.05);
     transform: translateY(-2px);
 }
 
@@ -451,7 +451,7 @@ details summary {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
     font-size: 0.98rem;
-    color: #d4a562;
+    color: #743481;
     /* accent */
     text-align: right;
     white-space: nowrap;
@@ -572,7 +572,7 @@ a.link-blue-underline:hover {
 .honor-item-selected {
     padding: 0.75rem 0.75rem 0.75rem 1rem;
     margin-bottom: 1rem;
-    border-left: 3px solid #d4a562;
+    border-left: 3px solid #743481;
     border-bottom: 1px solid #f1f5f9;
     background-color: rgba(212, 165, 98, 0.04);
 }
@@ -582,7 +582,7 @@ a.link-blue-underline:hover {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
     font-size: 0.98rem;
-    color: #d4a562;
+    color: #743481;
     text-align: right;
     white-space: nowrap;
 }
