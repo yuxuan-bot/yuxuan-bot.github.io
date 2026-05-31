@@ -134,13 +134,17 @@ function loadPublications() {
     }
 
     const publicationsList = document.querySelector('.publications-list');
+    const viewAllBtn = document.getElementById('view-all-publications');
+
     if (!publicationsList) {
         console.warn('Publications list not found');
         return;
     }
 
-    // Clear existing publications
     publicationsList.innerHTML = '';
+
+    let allPublications = [];
+    let isExpanded = false;
 
     fetch(publicationsJsonPath)
         .then(response => {
@@ -150,243 +154,291 @@ function loadPublications() {
             return response.json();
         })
         .then(publications => {
+            allPublications = publications;
             console.log('Loaded publications:', publications.length);
 
-            // Group by status: Preprint or Published
-            const pubsByStatus = {
-                'Preprint': [],
-                'Published': []
-            };
+            renderPublicationGroups(false);
+            updatePublicationViewAllButton();
 
-            publications.forEach(pub => {
-                const venue = (pub.venue || '').toLowerCase();
-                const isPreprint = pub.type === 'preprint' ||
-                    venue.includes('arxiv') ||
-                    venue.includes('under review') ||
-                    venue.includes('revision');
-
-                if (isPreprint) {
-                    pubsByStatus['Preprint'].push(pub);
-                } else {
-                    pubsByStatus['Published'].push(pub);
-                }
-            });
-
-            // Sort each group by year descending
-            pubsByStatus['Preprint'].sort((a, b) => {
-                const yearA = a.year ? parseInt(a.year) : 9999;
-                const yearB = b.year ? parseInt(b.year) : 9999;
-                return yearB - yearA;
-            });
-            pubsByStatus['Published'].sort((a, b) => {
-                const yearA = a.year ? parseInt(a.year) : 9999;
-                const yearB = b.year ? parseInt(b.year) : 9999;
-                return yearB - yearA;
-            });
-
-            // Render groups (Preprint first, then Published)
-            ['Preprint', 'Published'].forEach(status => {
-                if (pubsByStatus[status].length === 0) return;
-                const year = status;
-                const yearGroup = document.createElement('div');
-                yearGroup.className = 'pub-year-group';
-
-                // Year Header
-                const yearHeader = document.createElement('h3');
-                yearHeader.className = 'pub-year-header';
-                yearHeader.textContent = `-${year}-`;
-                yearGroup.appendChild(yearHeader);
-
-                // List
-                const ul = document.createElement('ul');
-                ul.className = 'pub-list-ul';
-
-                pubsByStatus[status].forEach(pub => {
-                    const li = document.createElement('li');
-                    li.className = 'pub-list-item';
-
-                    // Wrapper for text content to allow side-by-side layout with thumbnail
-                    const contentWrapper = document.createElement('div');
-                    contentWrapper.className = 'pub-content-wrapper';
-
-                    // --- Line 1: [Venue] Title ---
-                    const line1 = document.createElement('div');
-                    line1.className = 'pub-line-1';
-
-                    // Venue Tag
-                    const venueTagSpan = document.createElement('span');
-                    const venueShort = getVenueShortName(pub.venue, pub.year);
-                    venueTagSpan.textContent = `[${venueShort}]`;
-                    venueTagSpan.className = 'pub-venue-tag';
-                    if (venueShort.toLowerCase().includes('arxiv') ||
-                        venueShort.toLowerCase().includes('preprint') ||
-                        year === 'Preprint') {
-                        venueTagSpan.classList.add('tag-arxiv');
-                    } else {
-                        venueTagSpan.classList.add('tag-conference');
-                    }
-                    line1.appendChild(venueTagSpan);
-
-                    // Title (Text only, no link on title itself)
-                    const titleSpan = document.createElement('span');
-                    titleSpan.className = 'pub-title-text';
-                    titleSpan.textContent = pub.title;
-                    line1.appendChild(titleSpan);
-
-                    // Paper/Code Buttons
-                    if (pub.tags) {
-                        pub.tags.forEach(tag => {
-                            if (tag.link && tag.link !== '#') {
-                                const btn = document.createElement('a');
-                                btn.className = 'pub-link-btn';
-                                btn.href = tag.link;
-                                btn.target = '_blank';
-
-                                // Customize text/icon based on tag type
-                                if (tag.text === 'Paper') {
-                                    btn.textContent = 'PDF';
-                                } else {
-                                    btn.textContent = tag.text;
-                                }
-
-                                line1.appendChild(btn);
-                            }
-                        });
-                    }
-
-                    // ====== 修改的部分：默认显示图片，移除按钮 ======
-                    let thumbBox = null;
-                    if (pub.thumbnail) {
-                        // 1. 默认给 li 添加排版 class，触发图片和文字并排的 CSS
-                        li.classList.add('with-thumbnail-expanded');
-
-                        // 2. 创建图片容器，不再设置为 display: none
-                        thumbBox = document.createElement('div');
-                        thumbBox.className = 'pub-thumbnail-box';
-                        // thumbBox.style.display = 'none'; // 这行删除了
-
-                        const thumbImg = document.createElement('img');
-                        thumbImg.src = pub.thumbnail;
-                        thumbImg.alt = 'Publication Thumbnail';
-                        thumbBox.appendChild(thumbImg);
-                    }
-                    // ===============================================
-
-                    contentWrapper.appendChild(line1);
-
-                    // --- Line 2: Authors ---
-                    const line2 = document.createElement('div');
-                    line2.className = 'pub-line-2';
-                    line2.innerHTML = pub.authors; // keep innerHTML for <strong>/<u>
-                    contentWrapper.appendChild(line2);
-
-                    // --- Line 3: Venue Details ---
-                    const line3 = document.createElement('div');
-                    line3.className = 'pub-line-3';
-
-                    // 1. Badge (Oral/Spotlight)
-                    let highlightText = pub.highlight || '';
-                    let badgeText = '';
-                    if (highlightText.toLowerCase().includes('oral')) badgeText = 'Oral';
-                    else if (highlightText.toLowerCase().includes('spotlight')) badgeText = 'Spotlight';
-
-                    if (badgeText) {
-                        const badge = document.createElement('span');
-                        badge.className = 'pub-badge-highlight';
-                        badge.textContent = badgeText;
-                        line3.appendChild(badge);
-                    }
-
-                    // 2. Full Venue Name & Status
-                    let fullVenueName = getVenueFullName(pub.venue, pub.year);
-                    const venueLower = pub.venue.toLowerCase();
-
-                    // 判断是否在投或修改
-                    let statusPrefix = "";
-                    if (venueLower.includes('under review')) {
-                        statusPrefix = "Under Review";
-                    } else if (venueLower.includes('major revision')) {
-                        statusPrefix = "Major Revision";
-                    } else if (venueLower.includes('minor revision')) {
-                        statusPrefix = "Minor Revision";
-                    }
-
-                    // 如果处于在投/修改状态，保留期刊名并在前面加上状态
-                    // 比如展示为: "Under Review @ IEEE Internet of Things Journal"
-                    if (statusPrefix) {
-                        fullVenueName = `${statusPrefix} @ ${fullVenueName}`;
-                    }
-
-                    const venueNameSpan = document.createElement('span');
-                    venueNameSpan.textContent = fullVenueName;
-                    line3.appendChild(venueNameSpan);
-
-                    // 3. 学术级别 (直接移除之前的 if 限制，只要有信息就全部展示)
-                    // 处理 CCF 分区
-                    const ccfRank = getCCFRank(fullVenueName, pub.venue);
-                    if (ccfRank) {
-                        const rankSpan = document.createElement('span');
-                        rankSpan.className = `ccf-rank ccf-${ccfRank.toLowerCase()}`;
-                        rankSpan.textContent = `(CCF-${ccfRank})`;
-                        line3.appendChild(rankSpan);
-                        line3.appendChild(document.createTextNode(' '));
-                    }
-
-                    // 合并处理：中科院分区 + Top 标识
-                    const casRank = getCASRank(fullVenueName, pub.venue);
-
-                    if (casRank || pub.isTop) {
-                        const casSpan = document.createElement('span');
-                        // 依然保留中科院分区的颜色 class
-                        casSpan.className = `cas-rank ${casRank ? 'cas-q' + casRank : ''}`;
-
-                        let casContent = "(";
-                        if (casRank) {
-                            casContent += `中科院${casRank}区`;
-                        }
-
-                        if (pub.isTop) {
-                            // 如果既有分区又有Top，中间加个空格
-                            if (casRank) casContent += " ";
-                            // 加上一个特殊的 class 让 Top 依然可以有醒目的颜色
-                            casContent += `<span class="inline-top">Top</span>`;
-                        }
-
-                        casContent += ")";
-
-                        // 因为这里包含了 HTML 标签 (span)，所以用 innerHTML
-                        casSpan.innerHTML = casContent;
-                        line3.appendChild(casSpan);
-                        line3.appendChild(document.createTextNode(' '));
-                    }
-
-                    // 从 JSON 读取影响因子
-                    if (pub.impactFactor) {
-                        const ifSpan = document.createElement('span');
-                        ifSpan.className = 'impact-factor';
-                        ifSpan.textContent = `(IF: ${pub.impactFactor})`;
-                        line3.appendChild(ifSpan);
-                    }
-
-                    contentWrapper.appendChild(line3);
-
-                    // Append wrapper and thumbnail box to LI
-                    li.appendChild(contentWrapper);
-                    if (thumbBox) {
-                        li.appendChild(thumbBox);
-                    }
-
-                    ul.appendChild(li);
+            if (viewAllBtn) {
+                viewAllBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    isExpanded = !isExpanded;
+                    renderPublicationGroups(isExpanded);
+                    updatePublicationViewAllButton();
                 });
-
-                yearGroup.appendChild(ul);
-                publicationsList.appendChild(yearGroup);
-            });
+            }
         })
         .catch(error => {
             console.error('Error loading publications data:', error);
             publicationsList.innerHTML = '<p>Failed to load publications. Please check the console for details.</p>';
         });
+
+    function updatePublicationViewAllButton() {
+        if (!viewAllBtn) return;
+
+        const remainingCount = allPublications.filter(pub => !isFirstAuthorPublication(pub)).length;
+        if (remainingCount === 0) {
+            viewAllBtn.style.display = 'none';
+            return;
+        }
+
+        viewAllBtn.style.display = 'inline-flex';
+        viewAllBtn.style.alignItems = 'center';
+        viewAllBtn.style.gap = '0.25rem';
+
+        const expandText = viewAllBtn.querySelector('.expand-text');
+        const collapseText = viewAllBtn.querySelector('.collapse-text');
+        const icon = viewAllBtn.querySelector('i');
+
+        if (expandText) expandText.style.display = isExpanded ? 'none' : 'inline';
+        if (collapseText) collapseText.style.display = isExpanded ? 'inline' : 'none';
+        if (icon) {
+            icon.classList.toggle('fa-arrow-right', !isExpanded);
+            icon.classList.toggle('fa-arrow-up', isExpanded);
+        }
+    }
+
+    function renderPublicationGroups(showAll) {
+        publicationsList.innerHTML = '';
+
+        const visiblePubs = showAll
+            ? allPublications
+            : allPublications.filter(isFirstAuthorPublication);
+
+        if (visiblePubs.length === 0) {
+            publicationsList.innerHTML = '<p class="text-neutral-500">No publications to display.</p>';
+            return;
+        }
+
+        const pubsByStatus = {
+            'Preprint': [],
+            'Published': []
+        };
+
+        visiblePubs.forEach(pub => {
+            if (isPreprintPublication(pub)) {
+                pubsByStatus['Preprint'].push(pub);
+            } else {
+                pubsByStatus['Published'].push(pub);
+            }
+        });
+
+        ['Preprint', 'Published'].forEach(status => {
+            if (pubsByStatus[status].length === 0) return;
+
+            const yearGroup = document.createElement('div');
+            yearGroup.className = 'pub-year-group';
+
+            const yearHeader = document.createElement('h3');
+            yearHeader.className = 'pub-year-header';
+            yearHeader.textContent = `-${status}-`;
+            yearGroup.appendChild(yearHeader);
+
+            const ul = document.createElement('ul');
+            ul.className = 'pub-list-ul';
+
+            pubsByStatus[status].forEach(pub => {
+                const isFirstAuthor = isFirstAuthorPublication(pub);
+                const li = createPublicationItem(pub, {
+                    defaultImage: isFirstAuthor,
+                    allowImageToggle: !isFirstAuthor && !!pub.thumbnail,
+                    isPreprint: status === 'Preprint'
+                });
+                ul.appendChild(li);
+            });
+
+            yearGroup.appendChild(ul);
+            publicationsList.appendChild(yearGroup);
+        });
+    }
+}
+
+function isFirstAuthorPublication(pub) {
+    if (pub.isFirstAuthor === true || pub.firstAuthor === true) return true;
+
+    if (typeof pub.authors === 'string') {
+        const plainAuthors = pub.authors
+            .replace(/<[^>]*>/g, '')
+            .replace(/\*/g, '')
+            .trim();
+        const firstAuthor = (plainAuthors.split(',')[0] || '').toLowerCase();
+        return firstAuthor.includes('yuxuan nie') || firstAuthor.includes('nie yuxuan');
+    }
+
+    return false;
+}
+
+function isPreprintPublication(pub) {
+    const venue = (pub.venue || '').toLowerCase();
+    return pub.type === 'preprint' ||
+        venue.includes('arxiv') ||
+        venue.includes('under review') ||
+        venue.includes('revision');
+}
+
+function createPublicationItem(pub, options = {}) {
+    const {
+        defaultImage = false,
+        allowImageToggle = false,
+        isPreprint = false
+    } = options;
+
+    const li = document.createElement('li');
+    li.className = 'pub-list-item';
+
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'pub-content-wrapper';
+
+    // --- Line 1: [Venue] Title ---
+    const line1 = document.createElement('div');
+    line1.className = 'pub-line-1';
+
+    const titleSpan = document.createElement('span');
+    titleSpan.className = 'pub-title-text';
+    titleSpan.textContent = pub.title;
+    line1.appendChild(titleSpan);
+
+    if (pub.tags) {
+        pub.tags.forEach(tag => {
+            if (tag.link && tag.link !== '#') {
+                const btn = document.createElement('a');
+                btn.className = 'pub-link-btn';
+                btn.href = tag.link;
+                btn.target = '_blank';
+                btn.rel = 'noopener noreferrer';
+                btn.textContent = tag.text === 'Paper' ? 'PDF' : tag.text;
+                line1.appendChild(btn);
+            }
+        });
+    }
+
+    let thumbBox = null;
+    if (pub.thumbnail) {
+        thumbBox = document.createElement('div');
+        thumbBox.className = 'pub-thumbnail-box';
+
+        const thumbImg = document.createElement('img');
+        thumbImg.src = pub.thumbnail;
+        thumbImg.alt = pub.title || 'Publication thumbnail';
+        thumbBox.appendChild(thumbImg);
+
+        if (defaultImage) {
+            li.classList.add('with-thumbnail-expanded');
+        } else {
+            thumbBox.style.display = 'none';
+        }
+    }
+
+    // Non-first-author papers stay as a compact unordered list by default.
+    // The Image button expands only the clicked paper into the thumbnail layout.
+    if (allowImageToggle && thumbBox) {
+        const imageBtn = document.createElement('button');
+        imageBtn.type = 'button';
+        imageBtn.className = 'pub-link-btn pub-btn-preview';
+        imageBtn.textContent = 'Image';
+        imageBtn.setAttribute('aria-expanded', 'false');
+
+        imageBtn.addEventListener('click', function () {
+            const isOpen = li.classList.toggle('with-thumbnail-expanded');
+            thumbBox.style.display = isOpen ? 'block' : 'none';
+            imageBtn.classList.toggle('active', isOpen);
+            imageBtn.textContent = isOpen ? 'Text' : 'Image';
+            imageBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        line1.appendChild(imageBtn);
+    }
+
+    contentWrapper.appendChild(line1);
+
+    // --- Line 2: Authors ---
+    const line2 = document.createElement('div');
+    line2.className = 'pub-line-2';
+    line2.innerHTML = pub.authors || '';
+    contentWrapper.appendChild(line2);
+
+    // --- Line 3: Venue Details ---
+    const line3 = document.createElement('div');
+    line3.className = 'pub-line-3';
+
+    let highlightText = pub.highlight || '';
+    let badgeText = '';
+    if (highlightText.toLowerCase().includes('oral')) badgeText = 'Oral';
+    else if (highlightText.toLowerCase().includes('spotlight')) badgeText = 'Spotlight';
+
+    if (badgeText) {
+        const badge = document.createElement('span');
+        badge.className = 'pub-badge-highlight';
+        badge.textContent = badgeText;
+        line3.appendChild(badge);
+    }
+
+    let fullVenueName = getVenueFullName(pub.venue, pub.year);
+    const venueLower = (pub.venue || '').toLowerCase();
+
+    let statusPrefix = '';
+    if (venueLower.includes('under review')) {
+        statusPrefix = 'Under Review';
+    } else if (venueLower.includes('major revision')) {
+        statusPrefix = 'Major Revision';
+    } else if (venueLower.includes('minor revision')) {
+        statusPrefix = 'Minor Revision';
+    }
+
+    if (statusPrefix) {
+        fullVenueName = `${statusPrefix} @ ${fullVenueName}`;
+    }
+
+    const venueNameSpan = document.createElement('span');
+    venueNameSpan.textContent = fullVenueName;
+    line3.appendChild(venueNameSpan);
+
+    const ccfRank = getCCFRank(fullVenueName, pub.venue || '');
+    if (ccfRank) {
+        const rankSpan = document.createElement('span');
+        rankSpan.className = `ccf-rank ccf-${ccfRank.toLowerCase()}`;
+        rankSpan.textContent = `(CCF-${ccfRank})`;
+        line3.appendChild(rankSpan);
+        line3.appendChild(document.createTextNode(' '));
+    }
+
+    const casRank = getCASRank(fullVenueName, pub.venue || '');
+    if (casRank || pub.isTop) {
+        const casSpan = document.createElement('span');
+        casSpan.className = `cas-rank ${casRank ? 'cas-q' + casRank : ''}`;
+
+        let casContent = '(';
+        if (casRank) {
+            casContent += `中科院${casRank}区`;
+        }
+
+        if (pub.isTop) {
+            if (casRank) casContent += ' ';
+            casContent += '<span class="inline-top">Top</span>';
+        }
+
+        casContent += ')';
+        casSpan.innerHTML = casContent;
+        line3.appendChild(casSpan);
+        line3.appendChild(document.createTextNode(' '));
+    }
+
+    if (pub.impactFactor) {
+        const ifSpan = document.createElement('span');
+        ifSpan.className = 'impact-factor';
+        ifSpan.textContent = `(IF: ${pub.impactFactor})`;
+        line3.appendChild(ifSpan);
+    }
+
+    contentWrapper.appendChild(line3);
+
+    li.appendChild(contentWrapper);
+    if (thumbBox) {
+        li.appendChild(thumbBox);
+    }
+
+    return li;
 }
 
 function getVenueShortName(venueStr, year) {
@@ -405,7 +457,7 @@ function getVenueShortName(venueStr, year) {
     let suffix = '';
 
     // Check if it is a conference that needs year suffix
-    const conferences = ['NeurIPS', 'CVPR', 'ICCV', 'NSDI', 'ECCV', 'ICRA', 'AAAI', 'BIBM', 'IFIP NPC', 'INFOCOM', 'MOBICOM'];
+    const conferences = ['NeurIPS', 'CVPR', 'ICCV', 'NSDI', 'ECCV', 'ICRA', 'AAAI', 'BIBM', 'IFIP NPC', 'INFOCOM', 'MOBICOM', 'ICPP', 'ICNP', 'IMC'];
     for (const conf of conferences) {
         if (s.includes(conf)) {
             // Get last two digits of year
@@ -425,6 +477,7 @@ function getVenueShortName(venueStr, year) {
     // Journals or specific conferences
     if (s.includes('TDSC')) return 'IEEE TDSC' + revisionSuffix;
     if (s.includes('TMC')) return 'IEEE TMC' + revisionSuffix;
+    if (s.includes('Computer_Networks')) return 'Computer Networks' + revisionSuffix;
     if (s.includes('ESWA')) return 'Elsevier ESWA' + revisionSuffix;
     if (s.includes('JSAC')) return 'IEEE JSAC' + revisionSuffix;
     if (s.includes('TGCN')) return 'IEEE TGCN' + revisionSuffix;
@@ -451,6 +504,7 @@ function getVenueFullName(venueStr, year) {
     // Journal Full Names Mapping (No Year)
     if (s.includes('TDSC')) return 'IEEE Transactions on Dependable and Secure Computing';
     if (s.includes('TMC')) return 'IEEE Transactions on Mobile Computing';
+    if (s.includes('Computer_Networks')) return 'Computer Networks';
     if (s.includes('ESWA')) return 'Expert Systems With Applications';
     if (s.includes('JSAC')) return 'IEEE Journal on Selected Areas in Communications';
     if (s.includes('TGCN')) return 'IEEE Transactions on Green Communications and Networking';
@@ -460,7 +514,7 @@ function getVenueFullName(venueStr, year) {
 
     // Conference Full Names Mapping (With Year Suffix)
     if (s.includes('NeurIPS')) return `Annual Conference on Neural Information Processing Systems (NeurIPS${yearSuffix})`;
-    if (s.includes('NSDI')) return `USENIXSymposium on Networked Systems Design and Implementation (NSDI${yearSuffix})`;
+    if (s.includes('NSDI')) return `USENIX Symposium on Networked Systems Design and Implementation (NSDI${yearSuffix})`;
     if (s.includes('CVPR')) return `IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR${yearSuffix})`;
     if (s.includes('ICCV')) return `IEEE/CVF International Conference on Computer Vision (ICCV${yearSuffix})`;
     if (s.includes('ECCV')) return `European Conference on Computer Vision (ECCV${yearSuffix})`;
@@ -469,6 +523,9 @@ function getVenueFullName(venueStr, year) {
     if (s.includes('INFOCOM')) return `IEEE International Conference on Computer Communications (INFOCOM${yearSuffix})`;
     if (s.includes('MOBICOM')) return `Annual International Conference on Mobile Computing and Networking (MobiCom${yearSuffix})`;
     if (s.includes('BIBM')) return `IEEE International Conference on Bioinformatics and Biomedicine (BIBM${yearSuffix})`;
+    if (s.includes('IMC')) return `ACM Internet Measurement Conference (IMC${yearSuffix})`;
+    if (s.includes('ICNP')) return `IEEE International Conference on Network Protocols (ICNP${yearSuffix})`;
+    if (s.includes('ICPP')) return `International Conference on Parallel Processing (ICPP${yearSuffix})`;
     if (s.includes('IFIP NPC')) return `IFIP International Conference on Network and Parallel Computing (IFIP NPC${yearSuffix})`;
 
     if (s.toLowerCase().includes('arxiv')) return 'arXiv preprint';
@@ -489,7 +546,7 @@ function getCCFRank(fullName, originalVenue) {
     }
 
     // CCF-B
-    if (v.includes('bibm')) {
+    if (v.includes('bibm') || v.includes('computer_networks') || v.includes('imc') || v.includes('icpp') || v.includes('icnp')) {
         return 'B';
     }
 

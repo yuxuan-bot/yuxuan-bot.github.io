@@ -1,8 +1,8 @@
 {
     "colors": {
         "primary": "#0A2540",
-        "secondary": "#635BFF",
-        "accent": "#00D4FF",
+        "secondary": "#8C0000",
+        "accent": "#B92B2B",
         "background": {
             "light": "#FFFFFF",
             "subtle": "#F7FAFC",
@@ -16,8 +16,8 @@
         "border": "#E2E8F0",
         "success": "#0CCE6B",
         "gradient": {
-            "primary": "linear-gradient(135deg, #0A2540 0%, #635BFF 100%)",
-            "accent": "linear-gradient(135deg, #635BFF 0%, #00D4FF 100%)"
+            "primary": "linear-gradient(135deg, #650000 0%, #8C0000 100%)",
+            "accent": "linear-gradient(135deg, #8C0000 0%, #B92B2B 100%)"
         }
     },
     "shadows": {
@@ -37,4 +37,4 @@
         "lg": "1rem",
         "xl": "1.5rem"
     }
-} 
+}

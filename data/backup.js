@@ -1,21 +1,13 @@
 [{
-    "title": "Reliability-Constrained SFC Orchestration in Mobile Edge Computing via Lyapunov-Guided Reinforcement Learning",
-    "authors": "Yuanfei Xiao, Shujia Niu, Qixin Peng, <strong><u>Yuxuan Nie</u></strong>, Jixian Zhang, Zhenli He#",
+    "title": "Trust-as-Constraint: Runtime Security-Constrained Orchestration for Verifiable SFCs",
+    "authors": "Shujia Niu, Yuanfei Xiao, Qixin Peng, <strong><u>Yuxuan Nie</u></strong>, Zhenli He#",
     "type": "accepted",
     "isFirstAuthor": false,
-    "showOnHomepage": true,
-    "venue": "Springer ESWA (Under Review)",
+    "showOnHomepage": false,
+    "venue": "ICPP 2026",
     "year": "2026",
-    "thumbnail": "/assets/publications/eswa2026.png",
-    "impactFactor": "7.5",
-    "isTop": true,
-    "tags": [
-        {
-            "text": "Paper",
-            "class": "paper-tag",
-            "link": "https://www.journals.elsevier.com/expert-systems-with-applications"
-        }
-    ]
+    "thumbnail": "assets/publications/bac/icpp26.png",
+    "tags": []
 },
 {
     "title": "[Under Review] ARER: Rectifying Cross-Slot Feedback for Thermal-Aware Edge Offloading",

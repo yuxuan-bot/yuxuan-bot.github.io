@@ -70,20 +70,20 @@
 
         // Update active filter button
         document.querySelectorAll('.filter-link').forEach(link => {
-            link.style.background = '#e3f2fd';
-            link.style.color = '#1976d2';
+            link.style.background = 'rgba(140, 0, 0, 0.08)';
+            link.style.color = '#8C0000';
         });
 
         if (filter === 'first-author') {
-            document.getElementById('filter-first').style.background = '#1976d2';
+            document.getElementById('filter-first').style.background = '#8C0000';
             document.getElementById('filter-first').style.color = 'white';
             document.getElementById('filter-indicator').textContent = '(First Author Papers)';
         } else if (filter === 'accepted') {
-            document.getElementById('filter-accepted').style.background = '#1976d2';
+            document.getElementById('filter-accepted').style.background = '#8C0000';
             document.getElementById('filter-accepted').style.color = 'white';
             document.getElementById('filter-indicator').textContent = '(Accepted Papers)';
         } else {
-            document.getElementById('filter-all').style.background = '#1976d2';
+            document.getElementById('filter-all').style.background = '#8C0000';
             document.getElementById('filter-all').style.color = 'white';
         }
 

@@ -1,18 +1,42 @@
 [
   {
+    "title": "RIME: Rectifying Replay Misalignment for Thermal-Aware Edge Offloading",
+    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Xiaolong Zhai*, Yuanfei Xiao, Zuxian Wang, Shujia Niu, Zhenli He#",
+    "type": "accepted",
+    "isFirstAuthor": true,
+    "showOnHomepage": true,
+    "venue": "NSDI 2027",
+    "year": "2027",
+    "thumbnail": "assets/publications/bac/nsdi27.png",
+    "tags": []
+  },
+  {
+    "title": "DRACO-SFG: Cross-Slot Orchestration and Adaptive Resource Allocation for Service Function Graphs in Mobile Edge Computing",
+    "authors": "Yuanfei Xiao*, <strong><u>Yuxuan Nie*</u></strong>, Xiaolong Zhai, Zhenli He#",
+    "type": "accepted",
+    "isFirstAuthor": true,
+    "showOnHomepage": true,
+    "venue": "Computer_Networks 2026",
+    "year": "2026",
+    "thumbnail": "assets/publications/bac/cn26.png",
+    "isTop": false,
+    "impactFactor": "5.0",
+    "tags": []
+  },
+  {
     "title": "DPASyn: Mechanism-Aware Drug Synergy Prediction via Dual Attention and Precision-Aware Quantization",
-    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yuotng Song*, Jinjie Yang, Yupeng Song, Yu Jue Zhou, Hong Peng#",
+    "authors": "<strong><u>Yuxuan Nie*</u></strong>, Yutong Song*, Jinjie Yang, Yupeng Song, Yujue Zhou, Hong Peng#",
     "type": "accepted",
     "isFirstAuthor": true,
     "showOnHomepage": true,
     "venue": "BIBM 2025",
     "year": "2025",
-    "thumbnail": "assets/publications/bibm25.png",
+    "thumbnail": "assets/publications/bac/bibm25.png",
     "tags": [
       {
         "text": "Paper",
         "class": "paper-tag",
-        "link": "https://arxiv.org/abs/2505.19144v2"
+        "link": "https://doi.org/10.1109/BIBM66473.2025.11356358"
       },
       {
         "text": "Code",
@@ -22,19 +46,67 @@
     ]
   },
   {
-    "title": "Carbon-Aware Task Scheduling in DistributedComputing Continuum: A Lyapunov-GuidedReinforcement Learning Approach",
+    "title": "Carbon-Aware Resource Allocation and Task Offloading under Incomplete Information in the Cloud-Fog-Edge Continuum",
+    "authors": "Qixin Peng, Zhenli He#, <strong><u>Yuxuan Nie</u></strong>, Shujia Niu, Yuanfei Xiao",
+    "type": "accepted",
+    "isFirstAuthor": false,
+    "showOnHomepage": false,
+    "venue": "IMC 2026",
+    "year": "2026",
+    "thumbnail": "assets/publications/bac/imc26.png",
+    "tags": []
+  },
+  {
+    "title": "CD-CSF: Cross-Service Demand Envelopes for Spike-Resilient Tail-Latency Slicing at the Edge",
+    "authors": "Shujia Niu, Yuanfei Xiao, Qixin Peng, <strong><u>Yuxuan Nie</u></strong>, Zhenli He#",
+    "type": "accepted",
+    "isFirstAuthor": false,
+    "showOnHomepage": false,
+    "venue": "ICNP 2026",
+    "year": "2026",
+    "thumbnail": "assets/publications/bac/icnp26.png",
+    "tags": []
+  },
+  {
+    "title": "Executable-Aware Cooperative UAV-MEC Monitoring via Evaluator-Guided Topology Search",
+    "authors": "Jieming Zhang, Zhenli He#, Qingbin Guo, Yuanfei Xiao, <strong><u>Yuxuan Nie</u></strong>, Cheng Xie, Keqin Li",
+    "type": "accepted",
+    "isFirstAuthor": false,
+    "showOnHomepage": false,
+    "venue": "TMC 2026",
+    "year": "2026",
+    "thumbnail": "assets/publications/bac/tmc26.png",
+    "isTop": true,
+    "impactFactor": "8.1",
+    "tags": []
+  },
+  {
+    "title": "Reliability-Constrained SFC Orchestration in Mobile Edge Computing via Lyapunov-Guided Reinforcement Learning",
+    "authors": "Zhenli He#, Yuanfei Xiao, Shujia Niu, Qixin Peng, <strong><u>Yuxuan Nie</u></strong>, Jixian Zhang",
+    "type": "accepted",
+    "isFirstAuthor": false,
+    "showOnHomepage": false,
+    "venue": "ESWA 2026",
+    "year": "2026",
+    "thumbnail": "assets/publications/bac/eswa26.png",
+    "isTop": true,
+    "impactFactor": "7.8",
+    "tags": []
+  },
+  {
+    "title": "Carbon-Aware Task Scheduling in Distributed Computing Continuum: A Lyapunov-Guided Reinforcement Learning Approach",
     "authors": "Shujia Niu, Zhenli He#, Yuanfei Xiao, <strong><u>Yuxuan Nie</u></strong>, Yao Chen, Bingning Liu",
     "type": "accepted",
     "isFirstAuthor": false,
     "showOnHomepage": false,
     "venue": "IFIP NPC 2025",
     "year": "2025",
-    "thumbnail": "assets/publications/npc25.png",
+    "thumbnail": "assets/publications/bac/npc25.png",
     "tags": [
       {
         "text": "Paper",
         "class": "paper-tag",
-        "link": "https://link.springer.com/chapter/10.1007/978-3-032-10459-5_18"
+        "link": "https://doi.org/10.1007/978-3-032-10459-5_18"
       }
     ]
   }
