@@ -83,14 +83,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Load news data - use view-all.js for homepage
+    // Load news data - selected news by default, View All shows everything
     const latestNewsSection = document.getElementById('latest-news');
     if (latestNewsSection) {
-        // Ensure initViewAll is available
-        if (typeof initViewAll === 'function') {
-            initViewAll('view-all-news', 'news-container', 'data/news.json', renderNewsItems, 6);
+        if (typeof initNewsViewAll === 'function') {
+            initNewsViewAll('view-all-news', 'news-container', 'data/news.json');
         } else {
-            console.error('initViewAll function not found');
+            console.error('initNewsViewAll function not found');
         }
     }
 

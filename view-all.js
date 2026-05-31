@@ -83,3 +83,52 @@ function initHonorsViewAll(btnId, containerId, dataPath) {
     });
 }
 
+// News View All: default only selected news, View All shows everything
+function initNewsViewAll(btnId, containerId, dataPath) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+
+    let allData = [];
+    let selectedData = [];
+    let isExpanded = false;
+
+    let jsonPath = dataPath;
+    if (window.location.pathname.includes('/pages/')) {
+        jsonPath = '../' + dataPath;
+    }
+
+    fetch(jsonPath)
+        .then(response => response.json())
+        .then(data => {
+            allData = data;
+            selectedData = allData.filter(item => item.selected === true);
+
+            // Initial render: only selected news
+            renderNewsItems(selectedData, containerId);
+
+            // 如果没有可展开内容，就隐藏 View All
+            if (allData.length <= selectedData.length) {
+                btn.style.display = 'none';
+            }
+        })
+        .catch(error => console.error('Error loading news data:', error));
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        isExpanded = !isExpanded;
+
+        if (isExpanded) {
+            renderNewsItems(allData, containerId);
+
+            btn.querySelector('.expand-text').style.display = 'none';
+            btn.querySelector('.collapse-text').style.display = 'inline';
+            btn.querySelector('i').classList.replace('fa-arrow-right', 'fa-arrow-up');
+        } else {
+            renderNewsItems(selectedData, containerId);
+
+            btn.querySelector('.expand-text').style.display = 'inline';
+            btn.querySelector('.collapse-text').style.display = 'none';
+            btn.querySelector('i').classList.replace('fa-arrow-up', 'fa-arrow-right');
+        }
+    });
+}

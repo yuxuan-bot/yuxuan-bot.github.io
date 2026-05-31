@@ -1,27 +1,47 @@
 [
   {
+    "date": "2026.05",
+    "title": "Paper Submissions",
+    "content": "One paper submitted to <strong>IEEE TMC</strong>.",
+    "selected": true
+  },
+  {
+    "date": "2026.05",
+    "title": "Paper Submissions",
+    "content": "One paper submitted to <strong>Computer Networks</strong>.",
+    "selected": true
+  },
+  {
+    "date": "2026.05",
+    "title": "Paper Submissions",
+    "content": "One paper submitted to <strong>ICPP 2027</strong>, one to <strong>ICNP 2026</strong>, and one to <strong>IEEE TMC</strong>.",
+    "selected": true
+  },
+  {
     "date": "2026.04",
-    "title": "NSDI 2027",
-    "content": "One paper submitted to <strong>NSDI 2027</strong> and one to <strong>IMC 2026</strong>!"
+    "title": "Paper Submissions",
+    "content": "One paper submitted to <strong>NSDI 2027</strong> and one to <strong>IMC 2026</strong>.",
+    "selected": true
   },
   {
     "date": "2026.03",
-    "title": "Multiple Submissions",
-    "content": "Papers submitted to <strong>ESWA</strong>, <strong>EMNLP 2026</strong>, <strong>EMSOFT 2026</strong>, and <strong>KBS 2026</strong>!"
+    "title": "Paper Submissions",
+    "content": "One paper submitted to <strong>ESWA</strong>, one to <strong>EMNLP 2026</strong>, and one to <strong>EMSOFT 2026</strong>."
   },
   {
     "date": "2025.12",
     "title": "National Scholarship",
-    "content": "🏆Awarded the <strong>National Scholarship</strong> (Top 1%)!"
+    "content": "Awarded the <strong>National Scholarship</strong>.",
+    "selected": true
   },
   {
     "date": "2025.12",
     "title": "PaddlePaddle Open Source Star of the Year",
-    "content": "🎉Selected as <strong>PaddlePaddle Open Source Star of the Year 2025</strong> (Awarded in Beijing, only 10 recipients annually)!"
+    "content": "Selected as a <strong>PaddlePaddle Open Source Star of the Year 2025</strong>."
   },
   {
     "date": "2025.09",
     "title": "Admitted to Peking University",
-    "content": "🚀Admitted to <strong>Peking University</strong> through the postgraduate recommendation program!"
+    "content": "Admitted to <strong>Peking University</strong> through the postgraduate recommendation program."
   }
 ]
