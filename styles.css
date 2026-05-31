@@ -208,8 +208,8 @@ details summary {
 }
 
 .pub-list-item {
-    margin-bottom: 1.25rem;
-    line-height: 1.5;
+    margin-bottom: 0.7rem;
+    line-height: 1.2;
 }
 
 .pub-line-1 {
@@ -546,7 +546,7 @@ details summary {
     }
 }
 
-a.link-blue-underline {
+/* a.link-blue-underline {
     color: #0066cc !important;
     text-decoration: none !important;
 }
@@ -554,6 +554,17 @@ a.link-blue-underline {
 a.link-blue-underline:hover {
     color: #004499 !important;
     text-decoration: underline !important;
+} */
+a.link-red-underline {
+    color: var(--pku-red) !important;
+    text-decoration: none !important;
+    font-weight: 500;
+}
+
+a.link-red-underline:hover {
+    color: var(--pku-red-dark) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
 }
 
 /* ============================================== */
@@ -771,7 +782,7 @@ body {
 }
 
 .pub-list-item:not(.with-thumbnail-expanded) {
-    padding: 0.72rem 0.85rem;
+    padding: 0.1rem 0.15rem;
     border: 1px solid transparent;
 }
 
@@ -844,4 +855,83 @@ body {
     transform: translateY(-2px);
     border-color: rgba(140, 0, 0, 0.16);
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.pub-status-badge {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25;
+    vertical-align: middle;
+    border: 1px solid transparent;
+}
+
+/* Accepted: 北大红浅色 badge */
+.status-accepted {
+    color: var(--pku-red);
+    background: rgba(140, 0, 0, 0.07);
+    border-color: rgba(140, 0, 0, 0.16);
+}
+
+/* Under Review: 浅琥珀色 badge */
+.status-under-review {
+    color: #92400e;
+    background: #fffbeb;
+    border-color: #fcd34d;
+}
+
+/* Major Revision: 浅橙色 badge */
+.status-major-revision {
+    color: #9a3412;
+    background: #fff7ed;
+    border-color: #fdba74;
+}
+
+/* Minor Revision: 浅绿色 badge */
+.status-minor-revision {
+    color: #166534;
+    background: #f0fdf4;
+    border-color: #86efac;
+}
+
+/* Preprint: 浅蓝色 badge */
+.status-preprint {
+    color: #1d4ed8;
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+/* View All 后，一作/共一论文和非一作论文之间的淡分界线 */
+.pub-author-divider {
+    list-style: none !important;
+    height: 1px;
+    margin: 0.8rem 0 0.8rem 0;
+    padding: 0;
+    border: 0;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(140, 0, 0, 0.16) 16%,
+            rgba(140, 0, 0, 0.16) 84%,
+            transparent 100%);
+}
+
+.pub-author-divider::marker {
+    content: "";
+}
+
+.pub-list-ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+
+.pub-list-item {
+    list-style: none !important;
+}
+
+.pub-list-item::marker {
+    content: "" !important;
 }

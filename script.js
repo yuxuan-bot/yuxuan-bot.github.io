@@ -198,7 +198,6 @@ function loadPublications() {
             icon.classList.toggle('fa-arrow-up', isExpanded);
         }
     }
-
     function renderPublicationGroups(showAll) {
         publicationsList.innerHTML = '';
 
@@ -211,46 +210,50 @@ function loadPublications() {
             return;
         }
 
-        const pubsByStatus = {
-            'Preprint': [],
-            'Published': []
-        };
+        const ul = document.createElement('ul');
+        ul.className = 'pub-list-ul';
+
+        let hasFirstAuthorBefore = false;
+        let dividerInserted = false;
 
         visiblePubs.forEach(pub => {
-            if (isPreprintPublication(pub)) {
-                pubsByStatus['Preprint'].push(pub);
-            } else {
-                pubsByStatus['Published'].push(pub);
+            const isFirstAuthor = isFirstAuthorPublication(pub);
+            let isFirstOtherPaper = false;
+
+            // View All 后，在一作/共一论文和非一作论文之间插入淡分界线
+            if (showAll && !dividerInserted && !isFirstAuthor && hasFirstAuthorBefore) {
+                const divider = document.createElement('li');
+                divider.className = 'pub-author-divider';
+                divider.setAttribute('aria-hidden', 'true');
+                ul.appendChild(divider);
+
+                dividerInserted = true;
+                isFirstOtherPaper = true;
             }
-        });
 
-        ['Preprint', 'Published'].forEach(status => {
-            if (pubsByStatus[status].length === 0) return;
+            const li = createPublicationItem(pub, {
+                // 一作/共一论文默认显示图片
+                defaultImage: isFirstAuthor,
 
-            const yearGroup = document.createElement('div');
-            yearGroup.className = 'pub-year-group';
+                // 只有 View All 里的非一作论文才显示 Image/Text 按钮
+                allowImageToggle: showAll && !isFirstAuthor && !!pub.thumbnail,
 
-            const yearHeader = document.createElement('h3');
-            yearHeader.className = 'pub-year-header';
-            yearHeader.textContent = `-${status}-`;
-            yearGroup.appendChild(yearHeader);
-
-            const ul = document.createElement('ul');
-            ul.className = 'pub-list-ul';
-
-            pubsByStatus[status].forEach(pub => {
-                const isFirstAuthor = isFirstAuthorPublication(pub);
-                const li = createPublicationItem(pub, {
-                    defaultImage: isFirstAuthor,
-                    allowImageToggle: !isFirstAuthor && !!pub.thumbnail,
-                    isPreprint: status === 'Preprint'
-                });
-                ul.appendChild(li);
+                // 现在不再按 Preprint / Published 分组，这里固定 false 即可
+                isPreprint: false
             });
 
-            yearGroup.appendChild(ul);
-            publicationsList.appendChild(yearGroup);
+            if (isFirstOtherPaper) {
+                li.classList.add('first-other-paper');
+            }
+
+            if (isFirstAuthor) {
+                hasFirstAuthorBefore = true;
+            }
+
+            ul.appendChild(li);
         });
+
+        publicationsList.appendChild(ul);
     }
 }
 
@@ -268,21 +271,15 @@ function isFirstAuthorPublication(pub) {
 
     return false;
 }
-
-function isPreprintPublication(pub) {
-    const venue = (pub.venue || '').toLowerCase();
-    return pub.type === 'preprint' ||
-        venue.includes('arxiv') ||
-        venue.includes('under review') ||
-        venue.includes('revision');
-}
-
 function createPublicationItem(pub, options = {}) {
     const {
         defaultImage = false,
         allowImageToggle = false,
         isPreprint = false
     } = options;
+
+    const statusLabel = getPublicationStatusLabel(pub);
+    const isUnderReview = statusLabel === 'Under Review';
 
     const li = document.createElement('li');
     li.className = 'pub-list-item';
@@ -298,7 +295,12 @@ function createPublicationItem(pub, options = {}) {
     titleSpan.className = 'pub-title-text';
     titleSpan.textContent = pub.title;
     line1.appendChild(titleSpan);
-
+    if (isUnderReview) {
+        const statusBadge = document.createElement('span');
+        statusBadge.className = 'pub-status-badge status-under-review';
+        statusBadge.textContent = 'Under Review';
+        line1.appendChild(statusBadge);
+    }
     if (pub.tags) {
         pub.tags.forEach(tag => {
             if (tag.link && tag.link !== '#') {
@@ -336,11 +338,16 @@ function createPublicationItem(pub, options = {}) {
         const imageBtn = document.createElement('button');
         imageBtn.type = 'button';
         imageBtn.className = 'pub-link-btn pub-btn-preview';
-        imageBtn.textContent = 'Image';
-        imageBtn.setAttribute('aria-expanded', 'false');
+
+        const isInitiallyOpen = li.classList.contains('with-thumbnail-expanded');
+
+        imageBtn.textContent = isInitiallyOpen ? 'Text' : 'Image';
+        imageBtn.setAttribute('aria-expanded', isInitiallyOpen ? 'true' : 'false');
+        imageBtn.classList.toggle('active', isInitiallyOpen);
 
         imageBtn.addEventListener('click', function () {
             const isOpen = li.classList.toggle('with-thumbnail-expanded');
+
             thumbBox.style.display = isOpen ? 'block' : 'none';
             imageBtn.classList.toggle('active', isOpen);
             imageBtn.textContent = isOpen ? 'Text' : 'Image';
@@ -353,86 +360,87 @@ function createPublicationItem(pub, options = {}) {
     contentWrapper.appendChild(line1);
 
     // --- Line 2: Authors ---
-    const line2 = document.createElement('div');
-    line2.className = 'pub-line-2';
-    line2.innerHTML = pub.authors || '';
-    contentWrapper.appendChild(line2);
+    // Under Review papers only show title + badge + image.
+    if (!isUnderReview) {
+        const line2 = document.createElement('div');
+        line2.className = 'pub-line-2';
+        line2.innerHTML = pub.authors || '';
+        contentWrapper.appendChild(line2);
+    }
 
     // --- Line 3: Venue Details ---
-    const line3 = document.createElement('div');
-    line3.className = 'pub-line-3';
+    // Under Review papers do not show venue / authors / ranks.
+    if (!isUnderReview) {
+        const line3 = document.createElement('div');
+        line3.className = 'pub-line-3';
 
-    let highlightText = pub.highlight || '';
-    let badgeText = '';
-    if (highlightText.toLowerCase().includes('oral')) badgeText = 'Oral';
-    else if (highlightText.toLowerCase().includes('spotlight')) badgeText = 'Spotlight';
+        let highlightText = pub.highlight || '';
+        let badgeText = '';
+        if (highlightText.toLowerCase().includes('oral')) badgeText = 'Oral';
+        else if (highlightText.toLowerCase().includes('spotlight')) badgeText = 'Spotlight';
 
-    if (badgeText) {
-        const badge = document.createElement('span');
-        badge.className = 'pub-badge-highlight';
-        badge.textContent = badgeText;
-        line3.appendChild(badge);
-    }
-
-    let fullVenueName = getVenueFullName(pub.venue, pub.year);
-    const venueLower = (pub.venue || '').toLowerCase();
-
-    let statusPrefix = '';
-    if (venueLower.includes('under review')) {
-        statusPrefix = 'Under Review';
-    } else if (venueLower.includes('major revision')) {
-        statusPrefix = 'Major Revision';
-    } else if (venueLower.includes('minor revision')) {
-        statusPrefix = 'Minor Revision';
-    }
-
-    if (statusPrefix) {
-        fullVenueName = `${statusPrefix} @ ${fullVenueName}`;
-    }
-
-    const venueNameSpan = document.createElement('span');
-    venueNameSpan.textContent = fullVenueName;
-    line3.appendChild(venueNameSpan);
-
-    const ccfRank = getCCFRank(fullVenueName, pub.venue || '');
-    if (ccfRank) {
-        const rankSpan = document.createElement('span');
-        rankSpan.className = `ccf-rank ccf-${ccfRank.toLowerCase()}`;
-        rankSpan.textContent = `(CCF-${ccfRank})`;
-        line3.appendChild(rankSpan);
-        line3.appendChild(document.createTextNode(' '));
-    }
-
-    const casRank = getCASRank(fullVenueName, pub.venue || '');
-    if (casRank || pub.isTop) {
-        const casSpan = document.createElement('span');
-        casSpan.className = `cas-rank ${casRank ? 'cas-q' + casRank : ''}`;
-
-        let casContent = '(';
-        if (casRank) {
-            casContent += `中科院${casRank}区`;
+        if (badgeText) {
+            const badge = document.createElement('span');
+            badge.className = 'pub-badge-highlight';
+            badge.textContent = badgeText;
+            line3.appendChild(badge);
         }
 
-        if (pub.isTop) {
-            if (casRank) casContent += ' ';
-            casContent += '<span class="inline-top">Top</span>';
+        let fullVenueName = getVenueFullName(pub.venue, pub.year);
+
+        const venueNameSpan = document.createElement('span');
+        venueNameSpan.textContent = fullVenueName;
+        line3.appendChild(venueNameSpan);
+
+        const statusLabel = getPublicationStatusLabel(pub);
+        if (statusLabel) {
+            const statusBadge = document.createElement('span');
+            statusBadge.className = `pub-status-badge status-${statusLabel
+                .toLowerCase()
+                .replace(/\s+/g, '-')}`;
+            statusBadge.textContent = statusLabel;
+            line3.appendChild(statusBadge);
         }
 
-        casContent += ')';
-        casSpan.innerHTML = casContent;
-        line3.appendChild(casSpan);
-        line3.appendChild(document.createTextNode(' '));
+        const ccfRank = getCCFRank(fullVenueName, pub.venue || '');
+        if (ccfRank) {
+            const rankSpan = document.createElement('span');
+            rankSpan.className = `ccf-rank ccf-${ccfRank.toLowerCase()}`;
+            rankSpan.textContent = `(CCF-${ccfRank})`;
+            line3.appendChild(rankSpan);
+            line3.appendChild(document.createTextNode(' '));
+        }
+
+        const casRank = getCASRank(fullVenueName, pub.venue || '');
+        if (casRank || pub.isTop) {
+            const casSpan = document.createElement('span');
+            casSpan.className = `cas-rank ${casRank ? 'cas-q' + casRank : ''}`;
+
+            let casContent = '(';
+            if (casRank) {
+                casContent += `中科院${casRank}区`;
+            }
+
+            if (pub.isTop) {
+                if (casRank) casContent += ' ';
+                casContent += '<span class="inline-top">Top</span>';
+            }
+
+            casContent += ')';
+            casSpan.innerHTML = casContent;
+            line3.appendChild(casSpan);
+            line3.appendChild(document.createTextNode(' '));
+        }
+
+        if (pub.impactFactor) {
+            const ifSpan = document.createElement('span');
+            ifSpan.className = 'impact-factor';
+            ifSpan.textContent = `(IF: ${pub.impactFactor})`;
+            line3.appendChild(ifSpan);
+        }
+
+        contentWrapper.appendChild(line3);
     }
-
-    if (pub.impactFactor) {
-        const ifSpan = document.createElement('span');
-        ifSpan.className = 'impact-factor';
-        ifSpan.textContent = `(IF: ${pub.impactFactor})`;
-        line3.appendChild(ifSpan);
-    }
-
-    contentWrapper.appendChild(line3);
-
     li.appendChild(contentWrapper);
     if (thumbBox) {
         li.appendChild(thumbBox);
@@ -440,7 +448,61 @@ function createPublicationItem(pub, options = {}) {
 
     return li;
 }
+function getPublicationStatusLabel(pub) {
+    const rawStatus = (pub.status || pub.type || '').toString().trim().toLowerCase();
+    const venueLower = (pub.venue || '').toLowerCase();
 
+    // if (
+    //     rawStatus === 'accepted' ||
+    //     rawStatus === 'accept'
+    // ) {
+    //     return 'Accepted';
+    // }
+
+    if (
+        rawStatus === 'under_review' ||
+        rawStatus === 'under review' ||
+        rawStatus === 'review'
+    ) {
+        return 'Under Review';
+    }
+
+    if (
+        rawStatus === 'major_revision' ||
+        rawStatus === 'major revision'
+    ) {
+        return 'Major Revision';
+    }
+
+    if (
+        rawStatus === 'minor_revision' ||
+        rawStatus === 'minor revision'
+    ) {
+        return 'Minor Revision';
+    }
+
+    if (
+        rawStatus === 'preprint' ||
+        venueLower.includes('arxiv')
+    ) {
+        return 'Preprint';
+    }
+
+    // Backward compatibility: 如果你之前把状态写进了 venue，也能识别
+    if (venueLower.includes('under review')) {
+        return 'Under Review';
+    }
+
+    if (venueLower.includes('major revision')) {
+        return 'Major Revision';
+    }
+
+    if (venueLower.includes('minor revision')) {
+        return 'Minor Revision';
+    }
+
+    return '';
+}
 function getVenueShortName(venueStr, year) {
     if (!venueStr) return 'Preprint';
 
@@ -538,7 +600,7 @@ function getCCFRank(fullName, originalVenue) {
 
     // CCF-A
     if (v.includes('tdsc') || v.includes('dependable and secure') ||
-        v.includes('nsdi') || v.includes('tmc') || v.includes('mobile computing') ||
+        v.includes('nsdi') || v.includes('tmc') ||
         v.includes('aaai') || v.includes('neurips') ||
         v.includes('cvpr') || v.includes('iccv') ||
         v.includes('infocom') || v.includes('jsac')) {
@@ -569,8 +631,7 @@ function getCASRank(fullName, originalVenue) {
     }
 
     // 中科院 2区
-    if (v.includes('tmc') || v.includes('mobile computing') ||
-        v.includes('tdsc') || v.includes('dependable and secure computing')) {
+    if (v.includes('tdsc') || v.includes('dependable and secure computing')) {
         return '2';
     }
 
