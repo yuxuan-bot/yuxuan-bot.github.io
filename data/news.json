@@ -26,13 +26,13 @@
   {
     "date": "2026.03",
     "title": "Paper Submissions",
-    "content": "One paper submitted to <strong>ESWA</strong>, one to <strong>EMNLP 2026</strong>, and one to <strong>EMSOFT 2026</strong>."
+    "content": "One paper submitted to <strong>ESWA</strong>, one to <strong>EMNLP 2026</strong>, and one to <strong>EMSOFT 2026</strong>.",
+    "selected": true
   },
   {
     "date": "2025.12",
     "title": "National Scholarship",
-    "content": "Awarded the <strong>National Scholarship</strong>.",
-    "selected": true
+    "content": "Awarded the <strong>National Scholarship</strong>."
   },
   {
     "date": "2025.12",
