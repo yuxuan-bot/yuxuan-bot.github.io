@@ -280,6 +280,20 @@ function createPublicationItem(pub, options = {}) {
     const statusLabel = getPublicationStatusLabel(pub);
     const isUnderReview = statusLabel === 'Under Review';
 
+    const reviewMode = (pub.reviewMode || '')
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/[\s-]+/g, '_');
+
+    const isDoubleBlindUnderReview =
+        isUnderReview && (reviewMode === 'double_blind' || reviewMode === 'anonymous');
+
+    const isSingleBlindUnderReview =
+        isUnderReview && reviewMode === 'single_blind';
+
+
+
     const li = document.createElement('li');
     li.className = 'pub-list-item';
 
@@ -358,9 +372,10 @@ function createPublicationItem(pub, options = {}) {
 
     contentWrapper.appendChild(line1);
 
+
     // --- Line 2: Authors ---
-    // Under Review papers only show title + badge + image.
-    if (!isUnderReview) {
+    // Hide authors only for double-blind under-review papers.
+    if (!isDoubleBlindUnderReview) {
         const line2 = document.createElement('div');
         line2.className = 'pub-line-2';
         line2.innerHTML = pub.authors || '';
@@ -368,8 +383,8 @@ function createPublicationItem(pub, options = {}) {
     }
 
     // --- Line 3: Venue Details ---
-    // Under Review papers do not show venue / authors / ranks.
-    if (!isUnderReview) {
+    // Hide venue / ranks only for double-blind under-review papers.
+    if (!isDoubleBlindUnderReview) {
         const line3 = document.createElement('div');
         line3.className = 'pub-line-3';
 
@@ -391,8 +406,8 @@ function createPublicationItem(pub, options = {}) {
         venueNameSpan.textContent = fullVenueName;
         line3.appendChild(venueNameSpan);
 
-        const statusLabel = getPublicationStatusLabel(pub);
-        if (statusLabel) {
+        // Avoid showing a second "Under Review" badge in Line 3.
+        if (statusLabel && !isUnderReview) {
             const statusBadge = document.createElement('span');
             statusBadge.className = `pub-status-badge status-${statusLabel
                 .toLowerCase()
@@ -440,6 +455,8 @@ function createPublicationItem(pub, options = {}) {
 
         contentWrapper.appendChild(line3);
     }
+
+
     li.appendChild(contentWrapper);
     if (thumbBox) {
         li.appendChild(thumbBox);
@@ -538,6 +555,7 @@ function getVenueShortName(venueStr, year) {
     // Journals or specific conferences
     if (s.includes('TDSC')) return 'IEEE TDSC' + revisionSuffix;
     if (s.includes('TMC')) return 'IEEE TMC' + revisionSuffix;
+    if (s.includes('TSC')) return 'IEEE TSC' + revisionSuffix;
     if (s.includes('Computer_Networks')) return 'Computer Networks' + revisionSuffix;
     if (s.includes('ESWA')) return 'Elsevier ESWA' + revisionSuffix;
     if (s.includes('JSAC')) return 'IEEE JSAC' + revisionSuffix;
@@ -565,6 +583,7 @@ function getVenueFullName(venueStr, year) {
     // Journal Full Names Mapping (No Year)
     if (s.includes('TDSC')) return 'IEEE Transactions on Dependable and Secure Computing';
     if (s.includes('TMC')) return 'IEEE Transactions on Mobile Computing';
+    if (s.includes('TSC')) return 'IEEE Transactions on Service Computing';
     if (s.includes('Computer_Networks')) return 'Computer Networks';
     if (s.includes('ESWA')) return 'Expert Systems With Applications';
     if (s.includes('JSAC')) return 'IEEE Journal on Selected Areas in Communications';
@@ -599,7 +618,7 @@ function getCCFRank(fullName, originalVenue) {
 
     // CCF-A
     if (v.includes('tdsc') || v.includes('dependable and secure') ||
-        v.includes('nsdi') || v.includes('tmc') ||
+        v.includes('nsdi') || v.includes('tmc') || v.includes('tsc') ||
         v.includes('aaai') || v.includes('neurips') ||
         v.includes('cvpr') || v.includes('iccv') ||
         v.includes('infocom') || v.includes('jsac')) {
